@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Drop Rates - Prime Hunter
+
+    link(href="/public/css/bootstrap-3.3.1.min.css", rel="stylesheet")
+    link(href="/public/css/prime.css", rel="stylesheet")
+
+  body
+    
+    include navbar.jade
+    
+    div.jumbotron
+      div.container
+        div.row
+          div.col-lg-8
+            h1 Drop Rates
+            p Calculated drop rates.
+    
+    div.container
+      div#t1dataholder.row
+        div.col-lg-12
+          button#load-t1-data.btn.btn-primary Load T1 Data
+      div#t2dataholder.row
+        div.col-lg-12
+          button#load-t2-data.btn.btn-primary Load T2 Data
+      div#t3dataholder.row
+        div.col-lg-12
+          button#load-t3-data.btn.btn-primary Load T3 Data
+      div#t4dataholder.row
+        div.col-lg-12
+          button#load-t4-data.btn.btn-primary Load T4 Data
+    
+              
+    include footer.jade
+    
+    script(src="/public/js/jquery-2.1.3.min.js")
+    script(src="/public/js/jquery.toaster.js")
+    script(src="/public/js/bootstrap-3.3.1.min.js")
+    script(src="/public/js/PHitems.js")
+    script(src="/public/js/droprates.js")
+    script(src="/public/js/feedback.js")
+    

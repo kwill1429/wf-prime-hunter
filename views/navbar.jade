@@ -1,0 +1,49 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  div.container-fluid
+    div.navbar-header
+      button(type="button", data-toggle="collapse", data-target="#prime-hunter-navbar").navbar-toggle.collapsed
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a(href="/").navbar-brand Prime Hunter
+      
+    div.collapse.navbar-collapse#prime-hunter-navbar
+      ul.nav.navbar-nav
+        if (activeMenu === "homepage")
+          li.active
+            a(href="/") Homepage
+        else
+          li
+            a(href="/") Homepage
+        if (user)
+          if (activeMenu === "record")
+            li.active 
+              a(href="/record") Record runs
+          else
+            li
+              a(href="/record") Record runs
+          if (activeMenu === "history")
+            li.active 
+              a(href="/history") My history
+          else
+            li 
+              a(href="/history") My history
+          if (activeMenu === "droprates")
+            li.active 
+              a(href="/drop-rates") Drop Rates
+          else
+            li 
+              a(href="/drop-rates") Drop Rates
+      ul.nav.navbar-nav.navbar-right
+        if (user)
+          li
+            a(href="/account") Welcome back, #{user.steamid}
+          li
+            a(href="/logout") Logout
+        else
+          li
+            a(href="/auth/steam") 
+              img(src="/public/img/sits_small.png" width="154" height="23" alt="Sign in through Steam")
+          
+                
