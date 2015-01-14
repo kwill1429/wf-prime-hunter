@@ -33,8 +33,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new SteamStrategy({
-    returnURL: 'http://localhost:'+conf.port+'/auth/steam/return',
-    realm: 'http://localhost:'+conf.port+'/',
+    returnURL: 'http://'+conf.url+':'+conf.port+'/auth/steam/return',
+    realm: 'http://'+conf.url+':'+conf.port+'/',
     profile: false
   },
   function(identifier, profile, done) {

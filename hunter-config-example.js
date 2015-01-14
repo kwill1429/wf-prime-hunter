@@ -6,5 +6,5 @@ exports.HunterConfig = {
   sessionSecret : "ENTER-LONG-STRING-HERE",
   dbName: "ENTER-DATABASE-NAME-HERE",
   port: 80,
-  isRegistrationOpen: true
-}
+  url: "BASE URL"
+};
