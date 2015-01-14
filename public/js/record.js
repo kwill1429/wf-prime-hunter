@@ -136,6 +136,7 @@ $(document).ready(function() {
           break;
         case "defense":
         case "survival":
+        case "interception":
           displayMultipleRewards();
           break;
       }
