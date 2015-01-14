@@ -82,7 +82,7 @@ var site = require('./routes/site');
 app.get('/', site.index);
 app.get('/record', ensureAuthenticated, site.record);
 app.get('/history', ensureAuthenticated, site.history);
-app.get('/drop-rates', ensureAuthenticated, site.droprates);
+app.get('/drop-rates', site.droprates);
 app.post('/ajax/saverun', site.saverun);
 app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
