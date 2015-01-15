@@ -288,13 +288,13 @@ $(document).ready(function() {
   
   //r == round
   function getRotation(r) {
-    if (r == 1 || r == 2 || r == 5 || r == 6) {
+    if (r % 4 === 1 || r % 4 === 2) {
       return "A";
     }
-    else if (r == 3 || r == 7) {
+    else if (r % 4 === 3) {
       return "B";
     }
-    else if (r == 4 || r == 8) {
+    else if (r % 4 === 0) {
       return "C";
     }
     else {
