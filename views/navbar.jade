@@ -22,13 +22,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         else
           li 
             a(href="/drop-rates") Drop Rates
-        if (user)
-          if (activeMenu === "record")
+        if (activeMenu === "record")
             li.active 
               a(href="/record") Record runs
           else
             li
               a(href="/record") Record runs
+        if (user)
           if (activeMenu === "history")
             li.active 
               a(href="/history") My history

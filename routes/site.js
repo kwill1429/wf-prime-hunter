@@ -19,7 +19,9 @@ exports.saverun = function(req, res){
   
   var tosave = req.body;
   tosave.ts = Date.now();
-  tosave.userid = req.user.steamid;
+  if (req.user) {
+    tosave.userid = req.user.steamid;
+  }
   
   var newrun = new Runs(tosave);
 

@@ -80,7 +80,7 @@ var general = require('./routes/general');
 var site = require('./routes/site');
 
 app.get('/', site.index);
-app.get('/record', ensureAuthenticated, site.record);
+app.get('/record', site.record);
 app.get('/history', ensureAuthenticated, site.history);
 app.get('/drop-rates', site.droprates);
 app.post('/ajax/saverun', site.saverun);
