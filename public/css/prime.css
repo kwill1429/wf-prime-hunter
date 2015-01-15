@@ -61,3 +61,10 @@ footer {
   background-color: rgba(0,0,0, 0.2);
   padding: 10px;
 }
+
+/*Make sure button text is not overflowing*/
+@media (min-width: 768px) and (max-width: 992px) {
+  .btn {
+    font-size: 14px !important; 
+  }
+}

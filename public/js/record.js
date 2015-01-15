@@ -160,8 +160,8 @@ $(document).ready(function() {
     onSaveSingleRun: function(evt) {
       evt.preventDefault();
       
-      console.log("Run data:");
-      console.log(runData);
+      //console.log("Run data:");
+      //console.log(runData);
       
       sendData(runData);
     },
@@ -218,7 +218,7 @@ $(document).ready(function() {
     var buffer = "";
     
     rewards[runData.tier-1][runData.mission].forEach(function(item) {
-      buffer += "<div class='col-lg-3'>";
+      buffer += "<div class='col-lg-3 col-md-3 col-sm-3'>";
       buffer += "<button data-id='"+item+"' class='single-reward-button btn btn-default btn-lg btn-block'>"+items[item]+"</button>";
       buffer += "</div>";
     });
@@ -242,40 +242,40 @@ $(document).ready(function() {
     if (runData.mission === "defense") {
       var wave = (runData.reward.length+1)*5;
       buffer = "<div class=mission-round>";
-      buffer += "<div class=row><div class=col-lg-12><p class=center-text><strong>Choose Wave "+wave+" reward:</strong></p></div></div>";
+      buffer += "<div class=row><div class='col-lg-12 col-md-12 col-sm-12'><p class=center-text><strong>Choose Wave "+wave+" reward:</strong></p></div></div>";
       buffer += "<div class=row>";
     }
     else if (runData.mission === "survival") {
       var min = (runData.reward.length+1)*5;
       buffer = "<div class=mission-round>";
-      buffer += "<div class=row><div class=col-lg-12><p class=center-text><strong>Choose "+min+" minute reward:</strong></p></div></div>";
+      buffer += "<div class=row><div class='col-lg-12 col-md-12 col-sm-12'><p class=center-text><strong>Choose "+min+" minute reward:</strong></p></div></div>";
       buffer += "<div class=row>";
     }
     else if (runData.mission === "interception") {
       var round = runData.reward.length+1;
       buffer = "<div class=mission-round>";
-      buffer += "<div class=row><div class=col-lg-12><p class=center-text><strong>Choose round "+round+" reward:</strong></p></div></div>";
+      buffer += "<div class=row><div class='col-lg-12 col-md-12 col-sm-12'><p class=center-text><strong>Choose round "+round+" reward:</strong></p></div></div>";
       buffer += "<div class=row>";
     }
     
     switch (getRotation(runData.reward.length+1)) {
       case "A":
         rewards[runData.tier-1][runData.mission].rotA.forEach(function(item) {
-          buffer += "<div class='col-lg-3'>";
+          buffer += "<div class='col-lg-3 col-md-3 col-sm-3'>";
           buffer += "<button data-index="+ runData.reward.length +" data-id='"+item+"' class='multiple-reward-button btn btn-default btn-lg btn-block'>"+items[item]+"</button>";
           buffer += "</div>";
         });
         break;
       case "B":
         rewards[runData.tier-1][runData.mission].rotB.forEach(function(item) {
-          buffer += "<div class='col-lg-3'>";
+          buffer += "<div class='col-lg-3 col-md-3 col-sm-3'>";
           buffer += "<button data-index="+ runData.reward.length +" data-id='"+item+"' class='multiple-reward-button btn btn-default btn-lg btn-block'>"+items[item]+"</button>";
           buffer += "</div>";
         });
         break;
       case "C":
         rewards[runData.tier-1][runData.mission].rotC.forEach(function(item) {
-          buffer += "<div class='col-lg-3'>";
+          buffer += "<div class='col-lg-3 col-md-3 col-sm-3'>";
           buffer += "<button data-index="+ runData.reward.length +" data-id='"+item+"' class='multiple-reward-button btn btn-default btn-lg btn-block'>"+items[item]+"</button>";
           buffer += "</div>";
         });

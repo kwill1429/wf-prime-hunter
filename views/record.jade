@@ -16,57 +16,57 @@ html(lang="en")
     div.jumbotron
       div.container
         div.row
-          div.col-lg-8
+          div.col-lg-8.col-md-8.col-sm-8
             h1 Record Runs
             p Here you can record you runs. It helps us create more accurate statistics on Void rewards.
     
     div.container
       div.row
-        div.col-lg-12
+        div.col-lg-12.col-md-12.col-sm-12
           p.center-text Start the record process by pushing this wonderfull button:
       div.row
-        div.col-lg-12
+        div.col-lg-12.col-md-12.col-sm-12
           button#manual-entry.btn.btn-default.btn-block.btn-lg Start Entry
       
       div.choose-tier.hidden
         div.row
-          div.col-lg-12
+          div.col-lg-12.col-md-12.col-sm-12
             p.center-text
               strong Choose Tier
         div.row
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-tier=1).tier-button.btn.btn-default.btn-lg.btn-block Tier 1
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-tier=2).tier-button.btn.btn-default.btn-lg.btn-block Tier 2
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-tier=3).tier-button.btn.btn-default.btn-lg.btn-block Tier 3
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-tier=4).tier-button.btn.btn-default.btn-lg.btn-block Tier 4
       
       div.choose-mission.hidden
         div.row
-          div.col-lg-12
+          div.col-lg-12.col-md-12.col-sm-12
             p.center-text
               strong Choose Mission Type
         div.row.missions
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="capture").mission-button.btn.btn-default.btn-lg.btn-block Capture
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="defense").mission-button.btn.btn-default.btn-lg.btn-block Defense
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="exterminate").mission-button.btn.btn-default.btn-lg.btn-block Exterminate
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="interception")#interception.mission-button.btn.btn-default.btn-lg.btn-block Interception
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="mobiledefense").mission-button.btn.btn-default.btn-lg.btn-block Mobile Defense
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="sabotage").mission-button.btn.btn-default.btn-lg.btn-block Sabotage
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="survival").mission-button.btn.btn-default.btn-lg.btn-block Survival
             
       div.choose-single-reward.hidden
         div.row
-          div.col-lg-12
+          div.col-lg-12.col-md-12.col-sm-12
             p.center-text
               strong Choose Item Reward
         div.row.single-rewards
@@ -75,16 +75,16 @@ html(lang="en")
         
       div.single-reward-action.hidden
         div.row
-          div.col-lg-12
+          div.col-lg-12.col-md-12.col-sm-12
             p.center-text
               strong Choose Action
         div.row.reward-action
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button#save-single-run.btn.btn-success.btn-lg.btn-block Save Run
-          div.col-lg-3
+          div.col-lg-3.col-md-3.col-sm-3
             button#reset-single-run.btn.btn-danger.btn-lg.btn-block Reset All
         div.row
-          div.col-lg-12.action-result
+          div.col-lg-12.col-md-12.col-sm-12.action-result
               
     
     include footer.jade
