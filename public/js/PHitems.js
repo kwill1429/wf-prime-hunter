@@ -106,5 +106,6 @@ window.PHitems = [
   /* 102 */"Rhino Prime Helmet",
   /* 103 */"Rhino Prime Chassis",
   /* 104 */"Rhino Prime Systems",
-  /* 105 */"Orokin Cell"
+  /* 105 */"Orokin Cell",
+  /* 106 */"Forma Blueprint"
 ];
