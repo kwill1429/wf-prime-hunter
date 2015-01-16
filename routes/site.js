@@ -251,6 +251,7 @@ function aggregateMultiRewardMissionData(mission, tier, callback) {
     }
     else {
       var coll = [];
+      
       for (var i = 0; i < results.length; i++) {
         if (results[i].value.revs) {
           coll.push(aggregateRound(results[i].value.revs[0]));

@@ -117,41 +117,79 @@ $(document).ready(function() {
   }
   
   function domifyMultiRewardMission(data, title, roundName) {
+    var i, j, r;
     var buffer = "<div class=col-lg-3><table class='table table-condensed'>";
     buffer += "<thead><tr><th colspan='2'>"+title+"</th></tr></thead><tbody>";
-    console.log(data);
     
-    for (var i = 0; i < data.length; i++) {
-      var j;
-      switch (roundName) {
-        case "Wave":
-          buffer += "<tr><td colspan='2'><strong>Wave "+(i+1)*5+"</strong></td></tr>";
-          break;
-        case "Minute":
-          buffer += "<tr><td colspan='2'><strong>"+(i+1)*5+" Minutes</strong></td></tr>";
-          break;
-        case "Round":
-          buffer += "<tr><td colspan='2'><strong>Round "+(i+1)+"</strong></td></tr>";
-          break;
-      }
-      
-      
-      var sum = 0;
-      
+    var t = {
+      rotA: [],
+      rotB: [],
+      rotC: []
+    };
+    
+    //Iterate over rounds
+    for (i = 0; i < data.length; i++) {
+      //Filter out everything into the rotations, and merge identical items
       for (j = 0; j < data[i].length; j++) {
-        sum += data[i][j].count;
-      }
-      
-      for (j = 0; j < data[i].length; j++) {
-        buffer += "<tr>";
-        buffer += "<td>"+getItemFromID(data[i][j].id)+"</td><td>"+ Math.round((data[i][j].count/sum)*100)+"% ("+data[i][j].count+")</td>";
-        buffer += "</tr>";
+        r = parseInt(i)+1;
+        
+        if ( r % 4 === 1 || r % 4 === 2 ) {
+          //Rotation A
+          mergeIntoArray( t.rotA, data[i][j] );
+        }
+        else if ( r % 4 === 3 ) {
+          //Rotation B
+          mergeIntoArray( t.rotB, data[i][j] );
+        }
+        else if ( r % 4 === 0 ) {
+          //Rotation C
+          mergeIntoArray( t.rotC, data[i][j] );
+        }  
       }
       
     }
+    
+    //Calculate sums per rotation
+    var sumA = 0;
+    var sumB = 0;
+    var sumC = 0;
+    for (i in t.rotA) {
+      sumA += t.rotA[i].count;
+    }
+    for (i in t.rotB) {
+      sumB += t.rotB[i].count;
+    }
+    for (i in t.rotC) {
+      sumC += t.rotC[i].count;
+    }
+    
+    //Create DOM
+    buffer += "<tr><td colspan='2'><strong>Rotation A</strong></td></tr>";
+    for (i in t.rotA) {
+      buffer += "<tr><td>"+getItemFromID(t.rotA[i].id)+"</td><td>"+ Math.round((t.rotA[i].count/sumA)*100)+"% ("+t.rotA[i].count+")</td></tr>";
+    }
+    buffer += "<tr><td colspan='2'><strong>Rotation B</strong></td></tr>";
+    for (i in t.rotB) {
+      buffer += "<tr><td>"+getItemFromID(t.rotB[i].id)+"</td><td>"+ Math.round((t.rotB[i].count/sumB)*100)+"% ("+t.rotB[i].count+")</td></tr>";
+    }
+    buffer += "<tr><td colspan='2'><strong>Rotation C</strong></td></tr>";
+    for (i in t.rotC) {
+      buffer += "<tr><td>"+getItemFromID(t.rotC[i].id)+"</td><td>"+ Math.round((t.rotC[i].count/sumC)*100)+"% ("+t.rotC[i].count+")</td></tr>";
+    }
+    
     buffer += "</tbody></table></div>";
     
     return buffer;
+  }
+  
+  function mergeIntoArray(arr, item) {
+    for(var i in arr) {
+      if (arr[i].id === item.id) {
+        arr[i].count += item.count;
+        return;
+      }
+    }
+    arr.push(item);
   }
   
   function fetchTowerData(tier, callback) {
