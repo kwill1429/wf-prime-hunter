@@ -6,13 +6,22 @@
 var Runs = require('../models/runs');
 var Feedback = require('../models/feedback');
 var async = require('async');
+var conf = require('../hunter-config').HunterConfig;
 
 exports.index = function(req, res){
-  res.render('index', { user: req.user, activeMenu: "homepage" });
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('index', { user: req.user, activeMenu: "homepage", isprod:isprod });
 };
 
 exports.record = function(req, res){
-  res.render('record', { user: req.user, activeMenu: "record" });
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('record', { user: req.user, activeMenu: "record", isprod:isprod });
 };
 
 exports.saverun = function(req, res){
@@ -58,17 +67,25 @@ exports.savefeedback = function(req, res){
 };
 
 exports.history = function(req, res){
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
   Runs.find({userid: req.user.steamid}, null, {sort: {ts: -1}}, function(err, runs) {
     if (err) {
       console.log(err);
     }
     
-    res.render('history', {user: req.user, runs: runs, activeMenu: "history"});
+    res.render('history', {user: req.user, runs: runs, activeMenu: "history", isprod:isprod});
   });
 };
 
 exports.droprates = function(req, res){
-  res.render('droprates', {user: req.user, activeMenu: "droprates"});  
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('droprates', {user: req.user, activeMenu: "droprates", isprod:isprod});  
 };
 
 exports.fetchtowerdata = function(req, res){

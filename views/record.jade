@@ -9,6 +9,8 @@ html(lang="en")
     link(href="/public/css/bootstrap-3.3.1.min.css", rel="stylesheet")
     link(href="/public/css/prime.css", rel="stylesheet")
 
+    if isprod
+      script(src="/public/js/ga.js")
   body
     
     include navbar.jade
