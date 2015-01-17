@@ -94,7 +94,7 @@ $(document).ready(function() {
       
       $('.choose-tier').removeClass('hidden');
       
-      $('html, body').animate({scrollTop: $(document).height()}, 100);
+      $('html, body').animate({scrollTop: $(document).height()}, 16);
     },
     onChooseTier: function(evt) {
       evt.preventDefault();
@@ -116,10 +116,14 @@ $(document).ready(function() {
         $('#interception').addClass('hidden');
       }
       
-      $('html, body').animate({scrollTop: $(document).height()}, 100);
+      $('html, body').animate({scrollTop: $(document).height()}, 16);
     },
     onChooseMission: function(evt) {
       evt.preventDefault();
+      
+      $('.choose-multiple-reward').empty();
+      $('.single-rewards').empty();
+      $('.choose-single-reward').addClass('hidden');
       
       runData.mission = $(this).data('mission');
       
@@ -141,7 +145,7 @@ $(document).ready(function() {
           break;
       }
       
-      $('html, body').animate({scrollTop: $(document).height()}, 100);
+      $('html, body').animate({scrollTop: $(document).height()}, 16);
     },
     onChooseSingleReward: function(evt) {
       evt.preventDefault();
@@ -155,7 +159,7 @@ $(document).ready(function() {
       
       displaySavePrompt();
       
-      $('html, body').animate({scrollTop: $(document).height()}, 100);
+      $('html, body').animate({scrollTop: $(document).height()}, 16);
     },
     onSaveSingleRun: function(evt) {
       evt.preventDefault();
@@ -191,7 +195,6 @@ $(document).ready(function() {
     },
     onChooseMultipleReward: function(evt) {
       evt.preventDefault();
-      console.log("handle multipl reward button click");
       
       if (typeof runData.reward[ $(this).data('index') ] !== "undefined" ) {
         //We overwrite the reward
@@ -208,7 +211,7 @@ $(document).ready(function() {
       
       $(this).removeClass('btn-default').addClass('btn-primary');
       
-      $('html, body').animate({scrollTop: $(document).height()}, 100);
+      $('html, body').animate({scrollTop: $(document).height()}, 16);
     }
   };
   
