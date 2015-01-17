@@ -1,4 +1,10 @@
-v1.0.3
+v1.1.1
+
+- Added Orokin cell to some tables that were potentially missing it
+- Fixed typo and display bugs on 'record run' page
+- Added separate page for displaying key pack statistics
+
+v1.1.0
 
 - Current version is displayed in the footer now
 - Forma Blueprint is now in the drop tables
