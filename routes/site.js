@@ -5,6 +5,7 @@
 
 var Runs = require('../models/runs');
 var Feedback = require('../models/feedback');
+var Keypack = require('../models/keypack');
 var async = require('async');
 var conf = require('../hunter-config').HunterConfig;
 
@@ -22,6 +23,14 @@ exports.record = function(req, res){
     isprod = false;
   }
   res.render('record', { user: req.user, activeMenu: "record", isprod:isprod });
+};
+
+exports.recordKeypack = function(req, res){
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('record-keypack', { user: req.user, activeMenu: "record-keypack", isprod:isprod });
 };
 
 exports.saverun = function(req, res){
@@ -55,6 +64,41 @@ exports.savefeedback = function(req, res){
   var newfb = new Feedback(tosave);
 
   newfb.save(function (err, fb) {
+    var toclient;
+    if (err) {
+      toclient = {success: false, error: err};  
+    }
+    else {
+      toclient = {success: true};  
+    }
+    res.send(JSON.stringify(toclient));
+  }); 
+};
+
+exports.savekeypack = function(req, res){
+  
+  var tosave = {
+    keys: [{
+      tier: req.body.key1.tier,
+      mission: req.body.key1.mission
+    },
+    {
+      tier: req.body.key2.tier,
+      mission: req.body.key2.mission
+    },
+    {
+      tier: req.body.key3.tier,
+      mission: req.body.key3.mission
+    }],
+    ts: Date.now()
+  };
+  if (req.user) {
+    tosave.userid = req.user.steamid;
+  }
+  
+  var newkp = new Keypack(tosave);
+
+  newkp.save(function (err, run) {
     var toclient;
     if (err) {
       toclient = {success: false, error: err};  

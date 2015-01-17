@@ -24,10 +24,16 @@ nav.navbar.navbar-inverse.navbar-fixed-top
             a(href="/drop-rates") Drop Rates
         if (activeMenu === "record")
             li.active 
-              a(href="/record") Record runs
+              a(href="/record") Record Void Run
           else
             li
-              a(href="/record") Record runs
+              a(href="/record") Record Void Run
+        if (activeMenu === "record-keypack")
+            li.active 
+              a(href="/record-keypack") Record Void Key Pack
+          else
+            li
+              a(href="/record-keypack") Record Void Key Pack
         if (user)
           if (activeMenu === "history")
             li.active 

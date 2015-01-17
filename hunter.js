@@ -81,10 +81,12 @@ var site = require('./routes/site');
 
 app.get('/', site.index);
 app.get('/record', site.record);
+app.get('/record-keypack', site.recordKeypack);
 app.get('/history', ensureAuthenticated, site.history);
 app.get('/drop-rates', site.droprates);
 app.post('/ajax/saverun', site.saverun);
 app.post('/ajax/savefeedback', site.savefeedback);
+app.post('/ajax/savekeypack', site.savekeypack);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
 
 app.get('/account', ensureAuthenticated, function(req, res){
