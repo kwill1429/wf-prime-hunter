@@ -8,13 +8,14 @@ var Feedback = require('../models/feedback');
 var Keypack = require('../models/keypack');
 var async = require('async');
 var conf = require('../hunter-config').HunterConfig;
+var pjson = require('../package.json');
 
 exports.index = function(req, res){
   var isprod = true;
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('index', { user: req.user, activeMenu: "homepage", isprod:isprod });
+  res.render('index', { user: req.user, activeMenu: "homepage", isprod:isprod, version: pjson.version });
 };
 
 exports.record = function(req, res){
@@ -22,7 +23,7 @@ exports.record = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('record', { user: req.user, activeMenu: "record", isprod:isprod });
+  res.render('record', { user: req.user, activeMenu: "record", isprod:isprod, version: pjson.version });
 };
 
 exports.recordKeypack = function(req, res){
@@ -30,7 +31,7 @@ exports.recordKeypack = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('record-keypack', { user: req.user, activeMenu: "record-keypack", isprod:isprod });
+  res.render('record-keypack', { user: req.user, activeMenu: "record-keypack", isprod:isprod, version: pjson.version });
 };
 
 exports.saverun = function(req, res){
@@ -120,7 +121,7 @@ exports.history = function(req, res){
       console.log(err);
     }
     
-    res.render('history', {user: req.user, runs: runs, activeMenu: "history", isprod:isprod});
+    res.render('history', {user: req.user, runs: runs, activeMenu: "history", isprod:isprod, version: pjson.version});
   });
 };
 
@@ -129,7 +130,7 @@ exports.droprates = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('droprates', {user: req.user, activeMenu: "droprates", isprod:isprod});  
+  res.render('droprates', {user: req.user, activeMenu: "droprates", isprod:isprod, version: pjson.version});  
 };
 
 exports.fetchtowerdata = function(req, res){
