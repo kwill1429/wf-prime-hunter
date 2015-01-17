@@ -66,6 +66,52 @@ footer {
   text-align: center;
 }
 
+.keypack-heading {
+  text-align: center;
+}
+
+#tier-canvas {
+  float: right;
+}
+
+.tier-legend-holder,
+.mission-legend-holder {
+  float: left;
+}
+
+.tier-legend-holder ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.mission-legend-holder ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.tier-legend-holder ul li,
+.mission-legend-holder ul li {
+  line-height: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.tier-legend-holder ul li span,
+.mission-legend-holder ul li span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+
 /*Make sure button text is not overflowing*/
 @media (min-width: 768px) and (max-width: 992px) {
   .btn {

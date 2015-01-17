@@ -133,6 +133,48 @@ exports.droprates = function(req, res){
   res.render('droprates', {user: req.user, activeMenu: "droprates", isprod:isprod, version: pjson.version});  
 };
 
+exports.droprateskeypack = function(req, res){
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('droprates-keypack', {
+    user: req.user, 
+    activeMenu: "droprates-keypack", 
+    isprod:isprod, 
+    version: pjson.version
+  });  
+};
+
+exports.getkeypack = function(req, res) {
+  Keypack.aggregate([
+    {
+      $project:{
+        keys: 1
+      }
+    },
+    {
+      $unwind: '$keys'
+    },
+    {
+      $group:{
+        //_id: '$reward',
+        _id: {t: '$keys.tier', m: '$keys.mission'},
+        count: {$sum: 1}
+      }
+    }
+  ], function(err, result) {
+    if (err) {
+      console.log('ERROR');
+      console.log(err);
+      res.send(JSON.stringify({success: false, error: err}));
+    }
+    else {
+      res.send(JSON.stringify({success: true, data: result}));
+    }
+  });
+};
+
 exports.fetchtowerdata = function(req, res){
   if (req.params.tier == 1) {
     async.parallel({

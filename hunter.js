@@ -66,7 +66,6 @@ passport.use(new SteamStrategy({
         });
       }
       else {
-        //console.log("found user in db. log him in");
         return done(null, user);
       }
     });
@@ -84,10 +83,12 @@ app.get('/record', site.record);
 app.get('/record-keypack', site.recordKeypack);
 app.get('/history', ensureAuthenticated, site.history);
 app.get('/drop-rates', site.droprates);
+app.get('/drop-rates-key-pack', site.droprateskeypack);
 app.post('/ajax/saverun', site.saverun);
 app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/savekeypack', site.savekeypack);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
+app.post('/ajax/getkeypack', site.getkeypack);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
