@@ -100,7 +100,6 @@ $(document).ready(function() {
     var buffer = "<div class=col-lg-3><table class='table table-condensed'>";
     buffer += "<thead><tr><th colspan='2'>"+title+"</th></tr><tr><th>Item</th><th>Drop %</th></tr></thead><tbody>";
     
-    var sarr = data.sort();
     var sum = 0;
     
     data.forEach(function(item) {
@@ -146,8 +145,11 @@ $(document).ready(function() {
           mergeIntoArray( t.rotC, data[i][j] );
         }  
       }
-      
     }
+    
+    t.rotA.sort(compareArrayItems);
+    t.rotB.sort(compareArrayItems);
+    t.rotC.sort(compareArrayItems);
     
     //Calculate sums per rotation
     var sumA = 0;
@@ -218,6 +220,16 @@ $(document).ready(function() {
         callback("ERROR in conncetion", null);
       },
     });
+  }
+  
+  function compareArrayItems(a, b) {
+    if (a.count < b.count) {
+      return 1;
+    }
+    if (a.count > b.count) {
+      return -1;
+    }
+    return 0;
   }
   
   $('#load-t1-data').click(callbacks.onLoadT1Data);
