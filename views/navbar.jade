@@ -16,30 +16,38 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         else
           li
             a(href="/") Homepage
-        if (activeMenu === "droprates")
-          li.active 
-            a(href="/drop-rates") Prime Part Drop Rates
-        else
-          li 
-            a(href="/drop-rates") Prime Part Drop Rates
-        if (activeMenu === "droprates-keypack")
-          li.active 
-            a(href="/drop-rates-key-pack") Void Key Pack Drop Rates
-        else
-          li 
-            a(href="/drop-rates-key-pack") Void Key Pack Drop Rates
-        if (activeMenu === "record")
-            li.active 
-              a(href="/record") Record Void Run
-          else
-            li
-              a(href="/record") Record Void Run
-        if (activeMenu === "record-keypack")
-            li.active 
-              a(href="/record-keypack") Record Void Key Pack
-          else
-            li
-              a(href="/record-keypack") Record Void Key Pack
+        li.dropdown
+          a(href="#" data-toggle="dropdown").dropdown-toggle Drop Rates
+            span.caret
+            ul.dropdown-menu
+              if (activeMenu === "droprates")
+                li.active 
+                  a(href="/drop-rates") Prime Part Drop Rates
+              else
+                li 
+                  a(href="/drop-rates") Prime Part Drop Rates
+              if (activeMenu === "droprates-keypack")
+                li.active 
+                  a(href="/drop-rates-key-pack") Void Key Pack Drop Rates
+              else
+                li 
+                  a(href="/drop-rates-key-pack") Void Key Pack Drop Rates
+        li.dropdown
+          a(href="#" data-toggle="dropdown").dropdown-toggle Record
+            span.caret
+            ul.dropdown-menu
+              if (activeMenu === "record")
+                  li.active 
+                    a(href="/record") Record Void Run
+                else
+                  li
+                    a(href="/record") Record Void Run
+              if (activeMenu === "record-keypack")
+                  li.active 
+                    a(href="/record-keypack") Record Void Key Pack
+                else
+                  li
+                    a(href="/record-keypack") Record Void Key Pack
         if (user)
           if (activeMenu === "history")
             li.active 
