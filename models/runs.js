@@ -8,7 +8,8 @@ var Runs = new Schema({
   mission: String,
   reward: [Number],
   ts: Date,
-  userid: String
+  userid: String,
+  version: String
 });
 
 module.exports = mongoose.model('Runs', Runs);

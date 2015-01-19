@@ -83,7 +83,8 @@ $(document).ready(function() {
     tier: -1,
     mission: "",
     reward: [],
-    ts: "" //Set at the bottom where we reset it functionally
+    ts: "", //Set at the bottom where we reset it functionally
+    version: ""
   };
   
   var callbacks = {
@@ -92,6 +93,7 @@ $(document).ready(function() {
       
       $('#manual-entry').removeClass('btn-default').addClass('btn-primary');
       
+      $('.choose-version').removeClass('hidden');
       $('.choose-tier').removeClass('hidden');
       
       $('html, body').animate({scrollTop: $(document).height()}, 16);
@@ -164,9 +166,6 @@ $(document).ready(function() {
     onSaveSingleRun: function(evt) {
       evt.preventDefault();
       
-      //console.log("Run data:");
-      //console.log(runData);
-      
       sendData(runData);
     },
     onResetSingleRun: function(evt) {
@@ -177,12 +176,14 @@ $(document).ready(function() {
         tier: -1,
         mission: "",
         reward: [],
-        ts: ""
+        ts: "",
+        version: ""
       };
       
       //Reset DOM
       $('#manual-entry').removeClass('btn-primary').addClass('btn-default');
       $('#live-entry').removeClass('btn-primary').addClass('btn-default');
+      $('.choose-version').addClass('hidden');
       $('.choose-tier').addClass('hidden');
       $('.tier-button').removeClass('btn-primary').addClass('btn-default');
       $('.choose-mission').addClass('hidden');
@@ -192,6 +193,8 @@ $(document).ready(function() {
       $('.single-reward-action').addClass('hidden');  
       $('.action-result').empty();
       $('.choose-multiple-reward').empty().addClass('hidden');
+      
+      $("#version").val("15.10.2");
     },
     onChooseMultipleReward: function(evt) {
       evt.preventDefault();
@@ -318,7 +321,8 @@ $(document).ready(function() {
   function sendData(tosend) {
     $('.action-result').empty();
     
-    //tosend.ts = Date.now();
+    tosend.version = $('#version').val();
+    
     console.log("Sending data");
     console.log(tosend);
     

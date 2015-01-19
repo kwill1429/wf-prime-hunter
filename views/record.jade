@@ -34,6 +34,16 @@ html(lang="en")
         div.col-lg-12.col-md-12.col-sm-12
           button#manual-entry.btn.btn-default.btn-block.btn-lg Start Entry
       
+      div.choose-version.hidden
+        div.row
+          div.col-lg-2.col-md-2.col-sm-12
+            label(for="version") Game Version
+          div.col-lg-2.col-md-2.col-sm-12
+            select#version.form-control
+              option(value="15.10.2" selected) 15.10.2
+              option(value="15.10.1") 15.10.1
+              option(value="15.10.0") 15.10.0
+            
       div.choose-tier.hidden
         div.row
           div.col-lg-12.col-md-12.col-sm-12
