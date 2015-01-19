@@ -149,29 +149,50 @@ exports.droprateskeypack = function(req, res){
 };
 
 exports.getkeypack = function(req, res) {
-  Keypack.aggregate([
-    {
-      $project:{
-        keys: 1
-      }
-    },
-    {
-      $unwind: '$keys'
-    },
-    {
-      $group:{
-        _id: {t: '$keys.tier', m: '$keys.mission'},
-        count: {$sum: 1}
-      }
-    }
-  ], function(err, result) {
-    if (err) {
-      console.log('ERROR');
-      console.log(err);
-      res.send(JSON.stringify({success: false, error: err}));
+  ncache.get("keypackData", function( err, value ){
+    if( err ){
+      console.log( err );
+      res.send(JSON.stringify({ success: false, error: err}));
     }
     else {
-      res.send(JSON.stringify({success: true, data: result}));
+      if (typeof value.keypackData !== "undefined" ) {
+        //Cache hit
+        res.send(JSON.stringify({ success: true, data: value.keypackData}));
+      }
+      else {
+        Keypack.aggregate([
+          {
+            $project:{
+              keys: 1
+            }
+          },
+          {
+            $unwind: '$keys'
+          },
+          {
+            $group:{
+              _id: {t: '$keys.tier', m: '$keys.mission'},
+              count: {$sum: 1}
+            }
+          }
+        ], function(err, results) {
+          if (err) {
+            res.send(JSON.stringify({ success: false, error: err}));
+          }
+          else {    
+            ncache.set( "keypackData", results, function( err, success ){
+              if( !err && success ){
+                //Set cache
+                res.send(JSON.stringify({ success: true, data: results}));    
+              }
+              else {
+                // Error setting cache
+                res.send(JSON.stringify({ success: false, error: err}));
+              }
+            });
+          }
+        });
+      }
     }
   });
 };
