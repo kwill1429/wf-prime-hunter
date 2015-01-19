@@ -1,3 +1,8 @@
+v1.1.2
+
+- Sort endless mission rewards based on %
+- Added caching to reduce server load
+
 v1.1.1
 
 - Added Orokin cell to some tables that were potentially missing it
