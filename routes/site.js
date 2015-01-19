@@ -9,6 +9,8 @@ var Keypack = require('../models/keypack');
 var async = require('async');
 var conf = require('../hunter-config').HunterConfig;
 var pjson = require('../package.json');
+var NodeCache = require("node-cache");
+var ncache = new NodeCache({ stdTTL: 600, checkperiod: 60 });
 
 exports.index = function(req, res){
   var isprod = true;
@@ -158,7 +160,6 @@ exports.getkeypack = function(req, res) {
     },
     {
       $group:{
-        //_id: '$reward',
         _id: {t: '$keys.tier', m: '$keys.mission'},
         count: {$sum: 1}
       }
@@ -177,121 +178,213 @@ exports.getkeypack = function(req, res) {
 
 exports.fetchtowerdata = function(req, res){
   if (req.params.tier == 1) {
-    async.parallel({
-      cap: function(callback) {
-        aggregateSingleRewardMissionData("capture", 1, callback);
-      },
-      def: function(callback) {
-        aggregateMultiRewardMissionData("defense", 1, callback);
-      },
-      ext: function(callback) {
-        aggregateSingleRewardMissionData("exterminate", 1, callback);
-      },
-      md: function(callback) {
-        aggregateSingleRewardMissionData("mobiledefense", 1, callback);
-      },
-      sab: function(callback) {
-        aggregateSingleRewardMissionData("sabotage", 1, callback);
-      },
-      sur: function(callback) {
-        aggregateMultiRewardMissionData("survival", 1, callback);
-      }
-    }, function(err, results) {
-      if (err) {
+    ncache.get("towerOneData", function( err, value ){
+      if( err ){
+        console.log( err );
         res.send(JSON.stringify({ success: false, error: err}));
       }
       else {
-        res.send(JSON.stringify({ success: true, data: results}));
+        if (typeof value.towerOneData !== "undefined" ) {
+          //Cache hit
+          res.send(JSON.stringify({ success: true, data: value.towerOneData}));
+        }
+        else {
+          async.parallel({
+            cap: function(callback) {
+              aggregateSingleRewardMissionData("capture", 1, callback);
+            },
+            def: function(callback) {
+              aggregateMultiRewardMissionData("defense", 1, callback);
+            },
+            ext: function(callback) {
+              aggregateSingleRewardMissionData("exterminate", 1, callback);
+            },
+            md: function(callback) {
+              aggregateSingleRewardMissionData("mobiledefense", 1, callback);
+            },
+            sab: function(callback) {
+              aggregateSingleRewardMissionData("sabotage", 1, callback);
+            },
+            sur: function(callback) {
+              aggregateMultiRewardMissionData("survival", 1, callback);
+            }
+          }, function(err, results) {
+            if (err) {
+              res.send(JSON.stringify({ success: false, error: err}));
+            }
+            else {    
+              ncache.set( "towerOneData", results, function( err, success ){
+                if( !err && success ){
+                  //Set cache
+                  res.send(JSON.stringify({ success: true, data: results}));    
+                }
+                else {
+                  // Error setting cache
+                  res.send(JSON.stringify({ success: false, error: err}));
+                }
+              });
+            }
+          });
+        }
       }
     });
   }
   else if (req.params.tier == 2) {
-    async.parallel({
-      cap: function(callback) {
-        aggregateSingleRewardMissionData("capture", 2, callback);
-      },
-      def: function(callback) {
-        aggregateMultiRewardMissionData("defense", 2, callback);
-      },
-      ext: function(callback) {
-        aggregateSingleRewardMissionData("exterminate", 2, callback);
-      },
-      md: function(callback) {
-        aggregateSingleRewardMissionData("mobiledefense", 2, callback);
-      },
-      sab: function(callback) {
-        aggregateSingleRewardMissionData("sabotage", 2, callback);
-      },
-      sur: function(callback) {
-        aggregateMultiRewardMissionData("survival", 2, callback);
-      }
-    }, function(err, results) {
-      if (err) {
+    ncache.get("towerTwoData", function( err, value ){
+      if( err ){
+        console.log( err );
         res.send(JSON.stringify({ success: false, error: err}));
       }
       else {
-        res.send(JSON.stringify({ success: true, data: results}));
+        if (typeof value.towerTwoData !== "undefined" ) {
+          //Cache hit
+          res.send(JSON.stringify({ success: true, data: value.towerTwoData}));
+        }
+        else {
+          async.parallel({
+            cap: function(callback) {
+              aggregateSingleRewardMissionData("capture", 2, callback);
+            },
+            def: function(callback) {
+              aggregateMultiRewardMissionData("defense", 2, callback);
+            },
+            ext: function(callback) {
+              aggregateSingleRewardMissionData("exterminate", 2, callback);
+            },
+            md: function(callback) {
+              aggregateSingleRewardMissionData("mobiledefense", 2, callback);
+            },
+            sab: function(callback) {
+              aggregateSingleRewardMissionData("sabotage", 2, callback);
+            },
+            sur: function(callback) {
+              aggregateMultiRewardMissionData("survival", 2, callback);
+            }
+          }, function(err, results) {
+            if (err) {
+              res.send(JSON.stringify({ success: false, error: err}));
+            }
+            else {    
+              ncache.set( "towerTwoData", results, function( err, success ){
+                if( !err && success ){
+                  //Set cache
+                  res.send(JSON.stringify({ success: true, data: results}));    
+                }
+                else {
+                  // Error setting cache
+                  res.send(JSON.stringify({ success: false, error: err}));
+                }
+              });
+            }
+          });
+        }
       }
     });
   }
   else if (req.params.tier == 3) {
-    async.parallel({
-      cap: function(callback) {
-        aggregateSingleRewardMissionData("capture", 3, callback);
-      },
-      def: function(callback) {
-        aggregateMultiRewardMissionData("defense", 3, callback);
-      },
-      ext: function(callback) {
-        aggregateSingleRewardMissionData("exterminate", 3, callback);
-      },
-      md: function(callback) {
-        aggregateSingleRewardMissionData("mobiledefense", 3, callback);
-      },
-      sab: function(callback) {
-        aggregateSingleRewardMissionData("sabotage", 3, callback);
-      },
-      sur: function(callback) {
-        aggregateMultiRewardMissionData("survival", 3, callback);
-      }
-    }, function(err, results) {
-      if (err) {
+    ncache.get("towerThreeData", function( err, value ){
+      if( err ){
+        console.log( err );
         res.send(JSON.stringify({ success: false, error: err}));
       }
       else {
-        res.send(JSON.stringify({ success: true, data: results}));
+        if (typeof value.towerThreeData !== "undefined" ) {
+          //Cache hit
+          res.send(JSON.stringify({ success: true, data: value.towerThreeData}));
+        }
+        else {
+          async.parallel({
+            cap: function(callback) {
+              aggregateSingleRewardMissionData("capture", 3, callback);
+            },
+            def: function(callback) {
+              aggregateMultiRewardMissionData("defense", 3, callback);
+            },
+            ext: function(callback) {
+              aggregateSingleRewardMissionData("exterminate", 3, callback);
+            },
+            md: function(callback) {
+              aggregateSingleRewardMissionData("mobiledefense", 3, callback);
+            },
+            sab: function(callback) {
+              aggregateSingleRewardMissionData("sabotage", 3, callback);
+            },
+            sur: function(callback) {
+              aggregateMultiRewardMissionData("survival", 3, callback);
+            }
+          }, function(err, results) {
+            if (err) {
+              res.send(JSON.stringify({ success: false, error: err}));
+            }
+            else {    
+              ncache.set( "towerThreeData", results, function( err, success ){
+                if( !err && success ){
+                  //Set cache
+                  res.send(JSON.stringify({ success: true, data: results}));    
+                }
+                else {
+                  // Error setting cache
+                  res.send(JSON.stringify({ success: false, error: err}));
+                }
+              });
+            }
+          });
+        }
       }
     });
   }
   else if (req.params.tier == 4) {
-    async.parallel({
-      cap: function(callback) {
-        aggregateSingleRewardMissionData("capture", 4, callback);
-      },
-      def: function(callback) {
-        aggregateMultiRewardMissionData("defense", 4, callback);
-      },
-      ext: function(callback) {
-        aggregateSingleRewardMissionData("exterminate", 4, callback);
-      },
-      md: function(callback) {
-        aggregateSingleRewardMissionData("mobiledefense", 4, callback);
-      },
-      sab: function(callback) {
-        aggregateSingleRewardMissionData("sabotage", 4, callback);
-      },
-      sur: function(callback) {
-        aggregateMultiRewardMissionData("survival", 4, callback);
-      },
-      int: function(callback) {
-        aggregateMultiRewardMissionData("interception", 4, callback);
-      }
-    }, function(err, results) {
-      if (err) {
+    ncache.get("towerFourData", function( err, value ){
+      if( err ){
+        console.log( err );
         res.send(JSON.stringify({ success: false, error: err}));
       }
       else {
-        res.send(JSON.stringify({ success: true, data: results}));
+        if (typeof value.towerFourData !== "undefined" ) {
+          //Cache hit
+          res.send(JSON.stringify({ success: true, data: value.towerFourData}));
+        }
+        else {
+          async.parallel({
+            cap: function(callback) {
+              aggregateSingleRewardMissionData("capture", 4, callback);
+            },
+            def: function(callback) {
+              aggregateMultiRewardMissionData("defense", 4, callback);
+            },
+            ext: function(callback) {
+              aggregateSingleRewardMissionData("exterminate", 4, callback);
+            },
+            md: function(callback) {
+              aggregateSingleRewardMissionData("mobiledefense", 4, callback);
+            },
+            sab: function(callback) {
+              aggregateSingleRewardMissionData("sabotage", 4, callback);
+            },
+            sur: function(callback) {
+              aggregateMultiRewardMissionData("survival", 4, callback);
+            },
+            int: function(callback) {
+              aggregateMultiRewardMissionData("interception", 4, callback);
+            }
+          }, function(err, results) {
+            if (err) {
+              res.send(JSON.stringify({ success: false, error: err}));
+            }
+            else {    
+              ncache.set( "towerFourData", results, function( err, success ){
+                if( !err && success ){
+                  //Set cache
+                  res.send(JSON.stringify({ success: true, data: results}));    
+                }
+                else {
+                  // Error setting cache
+                  res.send(JSON.stringify({ success: false, error: err}));
+                }
+              });
+            }
+          });
+        }
       }
     });
   }

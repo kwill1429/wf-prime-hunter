@@ -197,13 +197,11 @@ $(document).ready(function() {
   function fetchTowerData(tier, callback) {
     $.ajax({
       url: '/ajax/gettower/'+tier,
-      //data: JSON.stringify(tosend),
       type: 'POST',
       contentType: 'application/json',
       success: function (data) {
         try {
           var response = jQuery.parseJSON(data);
-          var buffer = "";
           
           if (response.success) {
             callback(null, response.data);
