@@ -61,8 +61,8 @@ $(document).ready(function() {
     var buffer = "";
     if (tier === 1) {
       buffer = "<div class=row><div class=col-lg-3><h3>T"+tier+"</h3></div></div>";
-      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
-      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
+      buffer += domifyMultiRewardMission(data.def, "Defense");
+      buffer += domifyMultiRewardMission(data.sur, "Survival");
       buffer += domifySingleRewardMission(data.cap, "Capture");
       buffer += domifySingleRewardMission(data.ext, "Exterminate");
       buffer += domifySingleRewardMission(data.md, "Mobile Defense");
@@ -72,8 +72,8 @@ $(document).ready(function() {
     }
     else if (tier === 2) {
       buffer = "<div class=row><div class=col-lg-3><h3>T"+tier+"</h3></div></div>";
-      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
-      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
+      buffer += domifyMultiRewardMission(data.def, "Defense");
+      buffer += domifyMultiRewardMission(data.sur, "Survival");
       buffer += domifySingleRewardMission(data.cap, "Capture");
       buffer += domifySingleRewardMission(data.ext, "Exterminate");
       buffer += domifySingleRewardMission(data.md, "Mobile Defense");
@@ -83,8 +83,8 @@ $(document).ready(function() {
     }
     else if (tier === 3) {
       buffer = "<div class=row><div class=col-lg-3><h3>T"+tier+"</h3></div></div>";
-      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
-      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
+      buffer += domifyMultiRewardMission(data.def, "Defense");
+      buffer += domifyMultiRewardMission(data.sur, "Survival");
       buffer += domifySingleRewardMission(data.cap, "Capture");
       buffer += domifySingleRewardMission(data.ext, "Exterminate");
       buffer += domifySingleRewardMission(data.md, "Mobile Defense");
@@ -94,9 +94,9 @@ $(document).ready(function() {
     }
     else if (tier === 4) {
       buffer = "<div class=row><div class=col-lg-3><h3>T"+tier+"</h3></div></div>";
-      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
-      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
-      buffer += domifyMultiRewardMission(data.int, "Interception", "Round");
+      buffer += domifyMultiRewardMission(data.def, "Defense");
+      buffer += domifyMultiRewardMission(data.sur, "Survival");
+      buffer += domifyMultiRewardMission(data.int, "Interception");
       buffer += domifySingleRewardMission(data.cap, "Capture");
       buffer += domifySingleRewardMission(data.ext, "Exterminate");
       buffer += domifySingleRewardMission(data.md, "Mobile Defense");
@@ -106,8 +106,8 @@ $(document).ready(function() {
     }
     else if (tier === 5) {
       buffer = "<div class=row><div class=col-lg-3><h3>Orokin Derelict</h3></div></div>";
-      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
-      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
+      buffer += domifyMultiRewardMission(data.def, "Defense");
+      buffer += domifyMultiRewardMission(data.sur, "Survival");
       
       $('#oddataholder').empty().append(buffer);
     }
@@ -132,7 +132,7 @@ $(document).ready(function() {
     return buffer;
   }
   
-  function domifyMultiRewardMission(data, title, roundName) {
+  function domifyMultiRewardMission(data, title) {
     var i, j, r;
     var buffer = "<div class=col-lg-3><table class='table table-condensed'>";
     buffer += "<thead><tr><th colspan='2'>"+title+"</th></tr></thead><tbody>";
