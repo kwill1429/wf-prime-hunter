@@ -51,14 +51,16 @@ html(lang="en")
             p.center-text
               strong Choose Tier
         div.row
-          div.col-lg-3.col-md-3.col-sm-3
+          div.col-lg-2.col-md-2.col-sm-2
             button(data-tier=1).tier-button.btn.btn-default.btn-lg.btn-block Tier 1
-          div.col-lg-3.col-md-3.col-sm-3
+          div.col-lg-2.col-md-2.col-sm-2
             button(data-tier=2).tier-button.btn.btn-default.btn-lg.btn-block Tier 2
-          div.col-lg-3.col-md-3.col-sm-3
+          div.col-lg-2.col-md-2.col-sm-2
             button(data-tier=3).tier-button.btn.btn-default.btn-lg.btn-block Tier 3
-          div.col-lg-3.col-md-3.col-sm-3
+          div.col-lg-2.col-md-2.col-sm-2
             button(data-tier=4).tier-button.btn.btn-default.btn-lg.btn-block Tier 4
+          div.col-lg-2.col-md-2.col-sm-2
+            button(data-tier=5).tier-button.btn.btn-default.btn-lg.btn-block Derelict
       
       div.choose-mission.hidden
         div.row
@@ -67,19 +69,19 @@ html(lang="en")
               strong Choose Mission Type
         div.row.missions
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="capture").mission-button.btn.btn-default.btn-lg.btn-block Capture
+            button(data-mission="capture")#capture.mission-button.btn.btn-default.btn-lg.btn-block Capture
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="defense").mission-button.btn.btn-default.btn-lg.btn-block Defense
+            button(data-mission="defense")#defense.mission-button.btn.btn-default.btn-lg.btn-block Defense
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="exterminate").mission-button.btn.btn-default.btn-lg.btn-block Exterminate
+            button(data-mission="exterminate")#exterminate.mission-button.btn.btn-default.btn-lg.btn-block Exterminate
           div.col-lg-3.col-md-3.col-sm-3
             button(data-mission="interception")#interception.mission-button.btn.btn-default.btn-lg.btn-block Interception
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="mobiledefense").mission-button.btn.btn-default.btn-lg.btn-block Mobile Defense
+            button(data-mission="mobiledefense")#mobiledefense.mission-button.btn.btn-default.btn-lg.btn-block Mobile Defense
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="sabotage").mission-button.btn.btn-default.btn-lg.btn-block Sabotage
+            button(data-mission="sabotage")#sabotage.mission-button.btn.btn-default.btn-lg.btn-block Sabotage
           div.col-lg-3.col-md-3.col-sm-3
-            button(data-mission="survival").mission-button.btn.btn-default.btn-lg.btn-block Survival
+            button(data-mission="survival")#survival.mission-button.btn.btn-default.btn-lg.btn-block Survival
             
       div.choose-single-reward.hidden
         div.row

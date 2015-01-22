@@ -76,7 +76,20 @@ $(document).ready(function() {
         rotB: [0, 106, 2, 82, 103, 105],
         rotC: [0, 106, 2, 11, 46, 79, 84, 86, 90, 105]
       }
+    },
+    { //5 - Derelicts
+      defense: {
+        rotA: [0, 1, 2, 106, 105],
+        rotB: [0, 1, 2, 106, 105],
+        rotC: [0, 1, 2, 106, 105, 9, 77, 43]
+      },
+      survival: {
+        rotA: [0, 1, 2, 106, 105],
+        rotB: [0, 1, 2, 106, 105],
+        rotC: [0, 1, 2, 106, 105, 16, 96]
+      }
     }
+    
   ];
   
   var runData = {
@@ -113,9 +126,20 @@ $(document).ready(function() {
         //Show interception
         $('#interception').removeClass('hidden');
       }
-      else {
-        //Hide interception
+      else if (runData.tier === 5) {
+        $('#capture').addClass('hidden');
+        $('#exterminate').addClass('hidden');
+        $('#mobiledefense').addClass('hidden');
+        $('#sabotage').addClass('hidden');
         $('#interception').addClass('hidden');
+      }
+      else {
+        //Hide interception, re-add non-derelict ones
+        $('#interception').addClass('hidden');
+        $('#capture').removeClass('hidden');
+        $('#exterminate').removeClass('hidden');
+        $('#mobiledefense').removeClass('hidden');
+        $('#sabotage').removeClass('hidden');
       }
       
       $('html, body').animate({scrollTop: $(document).height()}, 16);

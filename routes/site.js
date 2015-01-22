@@ -409,6 +409,46 @@ exports.fetchtowerdata = function(req, res){
       }
     });
   }
+  else if (req.params.tier == 5) {
+    ncache.get("odData", function( err, value ){
+      if( err ){
+        console.log( err );
+        res.send(JSON.stringify({ success: false, error: err}));
+      }
+      else {
+        if (typeof value.odData !== "undefined" ) {
+          //Cache hit
+          res.send(JSON.stringify({ success: true, data: value.odData}));
+        }
+        else {
+          async.parallel({
+            def: function(callback) {
+              aggregateMultiRewardMissionData("defense", 5, callback);
+            },
+            sur: function(callback) {
+              aggregateMultiRewardMissionData("survival", 5, callback);
+            }
+          }, function(err, results) {
+            if (err) {
+              res.send(JSON.stringify({ success: false, error: err}));
+            }
+            else {    
+              ncache.set( "odData", results, function( err, success ){
+                if( !err && success ){
+                  //Set cache
+                  res.send(JSON.stringify({ success: true, data: results}));    
+                }
+                else {
+                  // Error setting cache
+                  res.send(JSON.stringify({ success: false, error: err}));
+                }
+              });
+            }
+          });
+        }
+      }
+    });
+  }
 };
 
 function aggregateSingleRewardMissionData(mission, tier, callback) {

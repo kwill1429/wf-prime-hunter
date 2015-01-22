@@ -44,6 +44,16 @@ $(document).ready(function() {
           displayData(4, data);      
         }
       });
+    },
+    onLoadODData: function() {
+      fetchTowerData(5, function(err, data) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          displayData(5, data);      
+        }
+      });
     }
   };
   
@@ -93,6 +103,13 @@ $(document).ready(function() {
       buffer += domifySingleRewardMission(data.sab, "Sabotage");
       
       $('#t4dataholder').empty().append(buffer);
+    }
+    else if (tier === 5) {
+      buffer = "<div class=row><div class=col-lg-3><h3>Orokin Derelict</h3></div></div>";
+      buffer += domifyMultiRewardMission(data.def, "Defense", "Wave");
+      buffer += domifyMultiRewardMission(data.sur, "Survival", "Minute");
+      
+      $('#oddataholder').empty().append(buffer);
     }
   }
   
@@ -234,6 +251,7 @@ $(document).ready(function() {
   $('#load-t2-data').click(callbacks.onLoadT2Data);
   $('#load-t3-data').click(callbacks.onLoadT3Data);
   $('#load-t4-data').click(callbacks.onLoadT4Data);
+  $('#load-od-data').click(callbacks.onLoadODData);
   
   function getItemFromID(id) {
     return window.PHitems[id];
