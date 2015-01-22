@@ -1,3 +1,10 @@
+v1.1.3
+
+- Added Orokin Derelicts to recording
+- Fix T4 survival drop tables
+- Added game version saving to recording
+- Updated for 15.11.0
+
 v1.1.2
 
 - Sort endless mission rewards based on %
