@@ -18,6 +18,7 @@ var http = require('http').Server(app);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use('/public', express.static(__dirname + '/public'));
+app.use('/bower_components', express.static(__dirname + '/bower_components')); //There is no need for this in prod.
 
 //middlware
 app.use(bodyParser.json());
