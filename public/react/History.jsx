@@ -29,6 +29,8 @@ var HistoryRow = React.createClass({
         return "Interception";
       case "mobiledefense":
         return "Mobile Defense";
+      default:
+        return mission;
     }
   },
 
