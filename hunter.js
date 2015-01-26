@@ -18,6 +18,7 @@ var http = require('http').Server(app);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use('/public', express.static(__dirname + '/public'));
+app.use('/bower_components', express.static(__dirname + '/bower_components')); //There is no need for this in prod.
 
 //middlware
 app.use(bodyParser.json());
@@ -89,6 +90,7 @@ app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/savekeypack', site.savekeypack);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
 app.post('/ajax/getkeypack', site.getkeypack);
+app.post('/ajax/gethistory', site.gethistory);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });

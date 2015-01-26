@@ -118,12 +118,18 @@ exports.history = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
+  res.render('history', {user: req.user, activeMenu: "history", isprod:isprod, version: pjson.version});
+};
+
+exports.gethistory = function(req, res){
+  
   Runs.find({userid: req.user.steamid}, null, {sort: {ts: -1}}, function(err, runs) {
     if (err) {
-      console.log(err);
+      res.send(JSON.stringify({success: false, error: err}));
     }
-    
-    res.render('history', {user: req.user, runs: runs, activeMenu: "history", isprod:isprod, version: pjson.version});
+    else {
+      res.send(JSON.stringify({success: true, data: runs}));
+    }
   });
 };
 

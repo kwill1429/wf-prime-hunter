@@ -6,8 +6,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title History - Prime Hunter
 
-    link(href="/public/css/bootstrap-3.3.2.min.css", rel="stylesheet")
-    link(href="/public/css/prime.css", rel="stylesheet")
+    link(href="/public/css/index-#{version}.min.css", rel="stylesheet")
     
     if isprod
       script(src="/public/js/ga.js")
@@ -21,35 +20,25 @@ html(lang="en")
           div.col-lg-8.col-md-8.col-sm-8
             h1 History
             p You can see your farming history here. 
-    
+                        
     div.container
       div.row
-        div.col-lg-12.col-md-12.col-sm-12
-          table#data-table.table
-            thead
-              tr
-                th Time
-                th Tier
-                th Mission
-                th Reward
-            tbody
-              each run in runs
-                tr
-                  td #{run.ts}
-                  td Tier #{run.tier}
-                  td #{run.mission}
-                  td 
-                    ul
-                      each rew in run.reward
-                        li #{rew}
+        div#history-holder.col-lg-12.col-md-12.col-sm-12
               
     include footer.jade
     
-    script(src="/public/js/jquery-2.1.3.min.js")
-    script(src="/public/js/jquery.toaster.js")
-    script(src="/public/js/bootstrap-3.3.2.min.js")
-    script(src="/public/js/moment-2.9.0.min.js")
-    script(src="/public/js/PHitems.js")
-    script(src="/public/js/history.js")
-    script(src="/public/js/feedback.js")
+    if isprod
+      script(src="/public/js/history-#{version}.min.js")  
+    else
+      script(src="/bower_components/jquery/dist/jquery.min.js")
+      script(src="/public/js/jquery.toaster.js")
+      script(src="/public/js/feedback.js")
+      script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+      script(src="/bower_components/moment/moment.js")
+      script(src="/public/js/PHitems.js")
+      script(src="/public/js/react.js")
+      script(src="/public/js/JSXTransformer.js")
+      script(src="/public/react/History.jsx" type="text/jsx")
+    
+    
     
