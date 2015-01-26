@@ -1,3 +1,9 @@
+v1.1.4
+
+- Sterted refactoring to React
+- Started adding Grunt
+- Game version updates and small fixes
+
 v1.1.3
 
 - Added Orokin Derelicts to recording
