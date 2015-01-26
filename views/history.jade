@@ -6,8 +6,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title History - Prime Hunter
 
-    link(href="/bower_components/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
-    link(href="/public/css/prime.css", rel="stylesheet")
+    link(href="/public/css/index-#{version}.min.css", rel="stylesheet")
     
     if isprod
       script(src="/public/js/ga.js")
@@ -28,13 +27,18 @@ html(lang="en")
               
     include footer.jade
     
-    script(src="/bower_components/jquery/dist/jquery.min.js")
-    script(src="/public/js/jquery.toaster.js")
-    script(src="/public/js/feedback.js")
-    script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-    script(src="/bower_components/moment/moment.js")
-    script(src="/public/js/PHitems.js")
-    script(src="/public/js/react-with-addons.min.js")
-    script(src="/public/js/JSXTransformer.js")
-    script(src="/public/react/History.jsx" type="text/jsx")
+    if isprod
+      script(src="/public/js/history-#{version}.min.js")  
+    else
+      script(src="/bower_components/jquery/dist/jquery.min.js")
+      script(src="/public/js/jquery.toaster.js")
+      script(src="/public/js/feedback.js")
+      script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+      script(src="/bower_components/moment/moment.js")
+      script(src="/public/js/PHitems.js")
+      script(src="/public/js/react.js")
+      script(src="/public/js/JSXTransformer.js")
+      script(src="/public/react/History.jsx" type="text/jsx")
+    
+    
     

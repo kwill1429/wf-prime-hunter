@@ -21,6 +21,8 @@ var HistoryRow = React.createClass({
         return "Exterminate";
       case "defense":
         return "Defense";
+      case "sabotage":
+        return "Sabotage";
       case "survival":
         return "Survival";
       case "interception":
@@ -41,8 +43,8 @@ var HistoryRow = React.createClass({
   
   render: function() {
     var rewards = [];
-    this.props.data.reward.forEach(function(item) {
-      rewards.push(<RewardRow id={item} />);
+    this.props.data.reward.forEach(function(item, index) {
+      rewards.push(<RewardRow id={item} key={"r-"+index} />);
     });
     
     return (
@@ -91,9 +93,9 @@ var History = React.createClass({
   render: function() {
     
     var rows = [];
-    this.state.data.forEach(function(row) {
+    this.state.data.forEach(function(row, index) {
       rows.push( 
-        <HistoryRow data={row} />
+        <HistoryRow data={row} key={"h-"+index}/>
       );
     });
     
