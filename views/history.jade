@@ -42,14 +42,24 @@ html(lang="en")
                     ul
                       each rew in run.reward
                         li #{rew}
+                        
+    div.container
+      div.row
+        div#history-holder.col-lg-12.col-md-12.col-sm-12
               
     include footer.jade
     
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/public/js/jquery.toaster.js")
-    script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-    script(src="/bower_components/moment/moment.js")
-    script(src="/public/js/PHitems.js")
-    script(src="/public/js/history.js")
     script(src="/public/js/feedback.js")
+    script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+    //
+      script(src="/bower_components/moment/moment.js")
+      script(src="/public/js/PHitems.js")
+      script(src="/public/js/history.js")
+    
+    script(src="/public/js/socket.io.js")
+    script(src="/public/js/react-with-addons.min.js")
+    script(src="/public/js/JSXTransformer.js")
+    script(src="/public/react/History.jsx" type="text/jsx")
     
