@@ -7,14 +7,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var radio = require('radio');
 var SteamStrategy = require('passport-steam').Strategy;
 var conf = require('./hunter-config').HunterConfig;
 var Account = require('./models/account');
 
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 //config
 app.set('views', __dirname + '/views');
@@ -92,17 +90,7 @@ app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/savekeypack', site.savekeypack);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
 app.post('/ajax/getkeypack', site.getkeypack);
-
-
-var ioHistoryPage = io.of('/history');
-
-ioHistoryPage.on('connection', site.onHistoryPageConnect);
-
-radio('InitialLoadResponseHistory').subscribe(function(data) {
-  console.log("RADIO send init load to: "+data.id);
-   
-  ioHistoryPage.to(data.id).emit('initialLoadResponse', data.runs);
-});
+app.post('/ajax/gethistory', site.gethistory);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });

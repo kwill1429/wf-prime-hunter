@@ -7,7 +7,6 @@ var Runs = require('../models/runs');
 var Feedback = require('../models/feedback');
 var Keypack = require('../models/keypack');
 var async = require('async');
-var radio = require('radio');
 var conf = require('../hunter-config').HunterConfig;
 var pjson = require('../package.json');
 var NodeCache = require("node-cache");
@@ -128,28 +127,16 @@ exports.history = function(req, res){
   });
 };
 
-exports.onHistoryPageConnect = function(socket) {
-  console.log('a user connected to history page');
+exports.gethistory = function(req, res){
   
-  //Join user to all rooms. it will later send us what rooms she really needs.
-  //socket.join('pc');
-  
-  console.log(socket);
-  
-  /*socket.on('getInitialLoad', function(data) {
-    console.log("getInitialLoad arrived from: "+data.id);
-    
-    Runs.find({userid: req.user.steamid}, null, {sort: {ts: -1}}, function(err, runs) {
-      if (err) {
-        console.log(err);
-      }
-      radio('InitialLoadResponseHistory').broadcast({ id:data.id, runs:runs});
-      //res.render('history', {user: req.user, runs: runs, activeMenu: "history", isprod:isprod, version: pjson.version});
-    });
-    
-    
-  });*/
-  
+  Runs.find({userid: req.user.steamid}, null, {sort: {ts: -1}}, function(err, runs) {
+    if (err) {
+      res.send(JSON.stringify({success: false, error: err}));
+    }
+    else {
+      res.send(JSON.stringify({success: true, data: runs}));
+    }
+  });
 };
 
 exports.droprates = function(req, res){
