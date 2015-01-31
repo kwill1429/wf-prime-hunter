@@ -218,7 +218,7 @@ $(document).ready(function() {
       $('.action-result').empty();
       $('.choose-multiple-reward').empty().addClass('hidden');
       
-      $("#version").val("15.12.0");
+      $("#version").val("15.12.3");
     },
     onChooseMultipleReward: function(evt) {
       evt.preventDefault();
