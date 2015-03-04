@@ -76,3 +76,4 @@ $RECYCLE.BIN/
 *.lnk
 hunter-config.js
 public/js/ga.js
+.brackets.json
