@@ -20,6 +20,14 @@ exports.index = function(req, res){
   res.render('index', { user: req.user, activeMenu: "homepage", isprod:isprod, version: pjson.version });
 };
 
+exports.devTracker = function(req, res){
+  var isprod = true;
+  if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
+    isprod = false;
+  }
+  res.render('devtracker', { user: req.user, activeMenu: "devtracker", isprod:isprod, version: pjson.version });
+};
+
 exports.record = function(req, res){
   var isprod = true;
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
@@ -33,7 +41,7 @@ exports.recordKeypack = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('record-keypack', { user: req.user, activeMenu: "record-keypack", isprod:isprod, version: pjson.version });
+  res.render('record-keypack-2', { user: req.user, activeMenu: "record-keypack", isprod:isprod, version: pjson.version });
 };
 
 exports.saverun = function(req, res){

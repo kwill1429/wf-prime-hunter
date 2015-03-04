@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Warframe Developer Post Tracker - Prime Hunter
+
+    link(href="/public/css/index-#{version}.min.css", rel="stylesheet")
+    
+    if isprod
+      script(src="/public/js/ga.js")
+  body
+    
+    include navbar.jade
+    
+    div.jumbotron
+      div.container
+        div.row
+          div.col-lg-8.col-md-8.col-sm-8
+            h1 Developer Post Tracker
+            p See what posts the developers made on the official forums.
+                        
+    
+    div#devtracker-holder
+              
+    include footer.jade
+    
+    if isprod
+      script(src="/public/js/devtracker-#{version}.min.js")  
+    else
+      script(src="/bower_components/jquery/dist/jquery.min.js")
+      script(src="/public/js/jquery.toaster.js")
+      script(src="/public/js/feedback.js")
+      script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+      script(src="/bower_components/moment/moment.js")
+      script(src="bower_components/react/JSXTransformer.js")
+      script(src="bower_components/react/react.js")
+      script(src="/socket.io/socket.io.js")
+      script(src="/public/react/DevTracker.jsx" type="text/jsx")
+    

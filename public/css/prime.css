@@ -112,6 +112,75 @@ footer {
   margin-bottom: -5px;
 }
 
+/* Dev tracker css */
+#dev-post-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#dev-post-list li {
+  border: 1px solid #999;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 2px;
+  position: relative;
+  padding-right: 200px;
+  min-height: 210px;
+}
+
+.dev-post-title {
+  padding: 10px;
+  border-bottom: 1px solid #999;
+}
+
+.dev-post-title a {
+  font-weight: bold;
+}
+
+.dev-post {
+  padding: 10px;
+}
+
+.dev-post img {
+  width: 100%;
+}
+
+.dev-profile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  border-left: 1px solid #999;
+  padding: 10px;
+  text-align: center;
+}
+
+.dev-profile a {
+  font-weight: bold;
+}
+
+.dev-profile img {
+  margin: 10px auto;
+  display: block;
+}
+
+#dev-post-list p {
+  margin: 0;
+}
+
+#dev-post-list li br {
+  display: none;
+}
+
+.filter-options {
+  border: 1px solid #999;
+  background-color: white;
+  border-radius: 2px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
 /*Make sure button text is not overflowing*/
 @media (min-width: 768px) and (max-width: 992px) {
   .btn {

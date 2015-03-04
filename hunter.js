@@ -13,6 +13,7 @@ var Account = require('./models/account');
 
 var app = express();
 var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 //config
 app.set('views', __dirname + '/views');
@@ -78,6 +79,7 @@ mongoose.connect('mongodb://localhost/'+conf.dbName);
 //Load routes
 var general = require('./routes/general');
 var site = require('./routes/site');
+var trackerSocket = require('./routes/trackerSocket');
 
 app.get('/', site.index);
 app.get('/record', site.record);
@@ -85,12 +87,16 @@ app.get('/record-keypack', site.recordKeypack);
 app.get('/history', ensureAuthenticated, site.history);
 app.get('/drop-rates', site.droprates);
 app.get('/drop-rates-key-pack', site.droprateskeypack);
+app.get('/dev-tracker', site.devTracker);
 app.post('/ajax/saverun', site.saverun);
 app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/savekeypack', site.savekeypack);
 app.post('/ajax/gettower/:tier', site.fetchtowerdata);
 app.post('/ajax/getkeypack', site.getkeypack);
 app.post('/ajax/gethistory', site.gethistory);
+
+var ioTracker = io.of('/dev-tracker');
+ioTracker.on('connection', trackerSocket.onConnect);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
