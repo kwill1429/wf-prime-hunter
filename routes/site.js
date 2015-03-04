@@ -41,7 +41,7 @@ exports.recordKeypack = function(req, res){
   if (req.get('Host') === "127.0.0.1:"+conf.port.toString()) {
     isprod = false;
   }
-  res.render('record-keypack-2', { user: req.user, activeMenu: "record-keypack", isprod:isprod, version: pjson.version });
+  res.render('record-keypack', { user: req.user, activeMenu: "record-keypack", isprod:isprod, version: pjson.version });
 };
 
 exports.saverun = function(req, res){
