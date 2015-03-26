@@ -20,10 +20,10 @@ window.PHitems = [
   /* 016 */"Burston Prime Barrel",
   /* 017 */"Burston Prime Receiver",
   /* 018 */"Burston Prime Stock",
-  /* 019 */"Latron Prime Blueprint",
-  /* 020 */"Latron Prime Barrel",
-  /* 021 */"Latron Prime Receiver",
-  /* 022 */"Latron Prime Stock",
+  /* 019 */"Latron Prime Blueprint", //NO LONEGR IN ROTATION 
+  /* 020 */"Latron Prime Barrel",    //NO LONEGR IN ROTATION
+  /* 021 */"Latron Prime Receiver",  //NO LONEGR IN ROTATION 
+  /* 022 */"Latron Prime Stock",     //NO LONEGR IN ROTATION 
   /* 023 */"Paris Prime Blueprint",
   /* 024 */"Paris Prime Grip",
   /* 025 */"Paris Prime String",
@@ -68,9 +68,9 @@ window.PHitems = [
   /* 064 */"Orthos Prime Blueprint",
   /* 065 */"Orthos Prime Blade",
   /* 066 */"Orthos Prime Handle",
-  /* 067 */"Reaper Prime Blueprint",
-  /* 068 */"Reaper Prime Blade",
-  /* 069 */"Reaper Prime Handle",
+  /* 067 */"Reaper Prime Blueprint", //NO LONGER IN ROTATION
+  /* 068 */"Reaper Prime Blade",     //NO LONGER IN ROTATION
+  /* 069 */"Reaper Prime Handle",    //NO LONGER IN ROTATION  
   /* 070 */"Scindo Prime Blueprint",
   /* 071 */"Scindo Prime Blade",
   /* 072 */"Scindo Prime Handle",
@@ -82,10 +82,10 @@ window.PHitems = [
   /* 078 */"Ember Prime Helmet",
   /* 079 */"Ember Prime Chassis",
   /* 080 */"Ember Prime Systems",
-  /* 081 */"Frost Prime Blueprint",
-  /* 082 */"Frost Prime Helmet",
-  /* 083 */"Frost Prime Chassis",
-  /* 084 */"Frost Prime Systems",
+  /* 081 */"Frost Prime Blueprint", //NO LONGER IN ROTATION
+  /* 082 */"Frost Prime Helmet",    //NO LONGER IN ROTATION
+  /* 083 */"Frost Prime Chassis",   //NO LONGER IN ROTATION
+  /* 084 */"Frost Prime Systems",   //NO LONGER IN ROTATION
   /* 085 */"Loki Prime Blueprint",
   /* 086 */"Loki Prime Helmet",
   /* 087 */"Loki Prime Chassis",
@@ -107,5 +107,13 @@ window.PHitems = [
   /* 103 */"Rhino Prime Chassis",
   /* 104 */"Rhino Prime Systems",
   /* 105 */"Orokin Cell",
-  /* 106 */"Forma Blueprint"
+  /* 106 */"Forma Blueprint",
+  /* 107 */"Volt Prime Blueprint",
+  /* 108 */"Volt Prime Helmet",
+  /* 109 */"Volt Prime Chassis",
+  /* 110 */"Volt Prime Systems",
+  /* 111 */"Odanata Prime Blueprint",
+  /* 112 */"Odanata Prime Harness",
+  /* 113 */"Odanata Prime Wings",
+  /* 114 */"Odanata Prime Systems",
 ];
