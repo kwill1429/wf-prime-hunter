@@ -55,12 +55,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top
           else
             li 
               a(href="/history") My history
-        if (activeMenu === "devtracker")
-          li.active
-            a(href="/dev-tracker") Dev Post Tracker
-        else
-          li
-            a(href="/dev-tracker") Dev Post Tracker
+        //
+          if (activeMenu === "devtracker")
+            li.active
+              a(href="/dev-tracker") Dev Post Tracker
+          else
+            li
+              a(href="/dev-tracker") Dev Post Tracker
       ul.nav.navbar-nav.navbar-right
         if (user)
           li
