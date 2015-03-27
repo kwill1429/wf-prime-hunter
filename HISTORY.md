@@ -1,6 +1,10 @@
+v1.1.5
+- Updated for 16.1.3
+- Added ability to filter prime drop rates by game version
+
 v1.1.4
 
-- Sterted refactoring to React
+- Started refactoring to React
 - Started adding Grunt
 - Game version updates and small fixes
 
