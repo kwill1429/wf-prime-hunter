@@ -91,7 +91,8 @@ app.get('/dev-tracker', site.devTracker);
 app.post('/ajax/saverun', site.saverun);
 app.post('/ajax/savefeedback', site.savefeedback);
 app.post('/ajax/savekeypack', site.savekeypack);
-app.post('/ajax/gettower/:tier', site.fetchtowerdata);
+//app.post('/ajax/gettower/:tier', site.fetchtowerdata);
+app.post('/ajax/gettower/:tier/:gversion', site.fetchtowerdata);
 app.post('/ajax/getkeypack', site.getkeypack);
 app.post('/ajax/gethistory', site.gethistory);
 

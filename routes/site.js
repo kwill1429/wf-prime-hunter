@@ -226,22 +226,22 @@ exports.fetchtowerdata = function(req, res){
         else {
           async.parallel({
             cap: function(callback) {
-              aggregateSingleRewardMissionData("capture", 1, callback);
+              aggregateSingleRewardMissionData("capture", 1, req.params.gversion, callback);
             },
             def: function(callback) {
-              aggregateMultiRewardMissionData("defense", 1, callback);
+              aggregateMultiRewardMissionData("defense", 1, req.params.gversion, callback);
             },
             ext: function(callback) {
-              aggregateSingleRewardMissionData("exterminate", 1, callback);
+              aggregateSingleRewardMissionData("exterminate", 1, req.params.gversion, callback);
             },
             md: function(callback) {
-              aggregateSingleRewardMissionData("mobiledefense", 1, callback);
+              aggregateSingleRewardMissionData("mobiledefense", 1, req.params.gversion, callback);
             },
             sab: function(callback) {
-              aggregateSingleRewardMissionData("sabotage", 1, callback);
+              aggregateSingleRewardMissionData("sabotage", 1, req.params.gversion, callback);
             },
             sur: function(callback) {
-              aggregateMultiRewardMissionData("survival", 1, callback);
+              aggregateMultiRewardMissionData("survival", 1, req.params.gversion, callback);
             }
           }, function(err, results) {
             if (err) {
@@ -278,22 +278,22 @@ exports.fetchtowerdata = function(req, res){
         else {
           async.parallel({
             cap: function(callback) {
-              aggregateSingleRewardMissionData("capture", 2, callback);
+              aggregateSingleRewardMissionData("capture", 2, req.params.gversion, callback);
             },
             def: function(callback) {
-              aggregateMultiRewardMissionData("defense", 2, callback);
+              aggregateMultiRewardMissionData("defense", 2, req.params.gversion, callback);
             },
             ext: function(callback) {
-              aggregateSingleRewardMissionData("exterminate", 2, callback);
+              aggregateSingleRewardMissionData("exterminate", 2, req.params.gversion, callback);
             },
             md: function(callback) {
-              aggregateSingleRewardMissionData("mobiledefense", 2, callback);
+              aggregateSingleRewardMissionData("mobiledefense", 2, req.params.gversion, callback);
             },
             sab: function(callback) {
-              aggregateSingleRewardMissionData("sabotage", 2, callback);
+              aggregateSingleRewardMissionData("sabotage", 2, req.params.gversion, callback);
             },
             sur: function(callback) {
-              aggregateMultiRewardMissionData("survival", 2, callback);
+              aggregateMultiRewardMissionData("survival", 2, req.params.gversion, callback);
             }
           }, function(err, results) {
             if (err) {
@@ -330,22 +330,22 @@ exports.fetchtowerdata = function(req, res){
         else {
           async.parallel({
             cap: function(callback) {
-              aggregateSingleRewardMissionData("capture", 3, callback);
+              aggregateSingleRewardMissionData("capture", 3, req.params.gversion, callback);
             },
             def: function(callback) {
-              aggregateMultiRewardMissionData("defense", 3, callback);
+              aggregateMultiRewardMissionData("defense", 3, req.params.gversion, callback);
             },
             ext: function(callback) {
-              aggregateSingleRewardMissionData("exterminate", 3, callback);
+              aggregateSingleRewardMissionData("exterminate", 3, req.params.gversion, callback);
             },
             md: function(callback) {
-              aggregateSingleRewardMissionData("mobiledefense", 3, callback);
+              aggregateSingleRewardMissionData("mobiledefense", 3, req.params.gversion, callback);
             },
             sab: function(callback) {
-              aggregateSingleRewardMissionData("sabotage", 3, callback);
+              aggregateSingleRewardMissionData("sabotage", 3, req.params.gversion, callback);
             },
             sur: function(callback) {
-              aggregateMultiRewardMissionData("survival", 3, callback);
+              aggregateMultiRewardMissionData("survival", 3, req.params.gversion, callback);
             }
           }, function(err, results) {
             if (err) {
@@ -382,25 +382,25 @@ exports.fetchtowerdata = function(req, res){
         else {
           async.parallel({
             cap: function(callback) {
-              aggregateSingleRewardMissionData("capture", 4, callback);
+              aggregateSingleRewardMissionData("capture", 4, req.params.gversion, callback);
             },
             def: function(callback) {
-              aggregateMultiRewardMissionData("defense", 4, callback);
+              aggregateMultiRewardMissionData("defense", 4, req.params.gversion, callback);
             },
             ext: function(callback) {
-              aggregateSingleRewardMissionData("exterminate", 4, callback);
+              aggregateSingleRewardMissionData("exterminate", 4, req.params.gversion, callback);
             },
             md: function(callback) {
-              aggregateSingleRewardMissionData("mobiledefense", 4, callback);
+              aggregateSingleRewardMissionData("mobiledefense", 4, req.params.gversion, callback);
             },
             sab: function(callback) {
-              aggregateSingleRewardMissionData("sabotage", 4, callback);
+              aggregateSingleRewardMissionData("sabotage", 4, req.params.gversion, callback);
             },
             sur: function(callback) {
-              aggregateMultiRewardMissionData("survival", 4, callback);
+              aggregateMultiRewardMissionData("survival", 4, req.params.gversion, callback);
             },
             int: function(callback) {
-              aggregateMultiRewardMissionData("interception", 4, callback);
+              aggregateMultiRewardMissionData("interception", 4, req.params.gversion, callback);
             }
           }, function(err, results) {
             if (err) {
@@ -437,10 +437,10 @@ exports.fetchtowerdata = function(req, res){
         else {
           async.parallel({
             def: function(callback) {
-              aggregateMultiRewardMissionData("defense", 5, callback);
+              aggregateMultiRewardMissionData("defense", 5, req.params.gversion, callback);
             },
             sur: function(callback) {
-              aggregateMultiRewardMissionData("survival", 5, callback);
+              aggregateMultiRewardMissionData("survival", 5, req.params.gversion, callback);
             }
           }, function(err, results) {
             if (err) {
@@ -465,12 +465,13 @@ exports.fetchtowerdata = function(req, res){
   }
 };
 
-function aggregateSingleRewardMissionData(mission, tier, callback) {
+function aggregateSingleRewardMissionData(mission, tier, version, callback) {
   Runs.aggregate([
     {	
       $match: {
         mission: mission,
-        tier: tier
+        tier: tier,
+        version: version
       }
     },
     {
@@ -499,7 +500,7 @@ function aggregateSingleRewardMissionData(mission, tier, callback) {
   });
 }
 
-function aggregateMultiRewardMissionData(mission, tier, callback) {
+function aggregateMultiRewardMissionData(mission, tier, version, callback) {
   var o = {};
 
   o.map = function() {
@@ -514,7 +515,7 @@ function aggregateMultiRewardMissionData(mission, tier, callback) {
     return {revs: revs};
   };
   
-  o.query = {tier: tier, mission: mission};
+  o.query = {tier: tier, mission: mission, version: version};
   
   Runs.mapReduce(o, function(err, results) {
     if (err) {
@@ -540,7 +541,6 @@ function aggregateMultiRewardMissionData(mission, tier, callback) {
       callback(null, coll);
     }
   });
-      //callback(null, result.sort(compareArrayItems));
 }
 
 function aggregateRound(data) {

@@ -27,21 +27,69 @@ html(lang="en")
         div.col-lg-12.col-md-12.col-sm-12
           div.alert.alert-info
             p Updated every 10 minutes.
-      div#t1dataholder.row
+      div.row
+        div.col-lg-12.col-md-12.col-sm-12
+          label(for="game-version") Game Version
+          select#game-version.form-control
+            option(value="16.1.3" selected) 16.1.3
+            option(value="16.1.2") 16.1.2
+            option(value="16.1.1") 16.1.1
+            option(value="16.0.4") 16.0.4
+            option(value="16.0.3") 16.0.3
+            option(value="16.0.2") 16.0.2
+            option(value="16.0.1") 16.0.1
+            option(value="16.0.0") 16.0.0
+            option(value="15.16.2") 15.16.2
+            option(value="15.16.1") 15.16.1
+            option(value="15.16.0") 15.16.0
+            option(value="15.15.1") 15.15.1
+            option(value="15.15.0") 15.15.0
+            option(value="15.14.1") 15.14.1
+            option(value="15.14.0") 15.14.0
+            option(value="15.13.8") 15.13.8
+            option(value="15.13.7") 15.13.7
+            option(value="15.13.6") 15.13.6
+            option(value="15.13.5") 15.13.5
+            option(value="15.13.4") 15.13.4
+            option(value="15.13.3") 15.13.3
+            option(value="15.13.2") 15.13.2
+            option(value="15.13.1") 15.13.1
+            option(value="15.13.0") 15.13.0
+            option(value="15.12.3") 15.12.3
+            option(value="15.12.2") 15.12.2
+            option(value="15.12.0") 15.12.0
+            option(value="15.11.2") 15.11.2
+            option(value="15.11.1") 15.11.1
+            option(value="15.11.0") 15.11.0
+            option(value="15.10.2") 15.10.2
+            option(value="15.10.1") 15.10.1
+            option(value="15.10.0") 15.10.0
+      
+      div.row
         div.col-lg-12.col-md-12.col-sm-12
           button#load-t1-data.btn.btn-primary Load T1 Data
-      div#t2dataholder.row
+      div.row
+        div#t1dataholder.col-lg-12.col-md-12.col-sm-12
+      div.row
         div.col-lg-12.col-md-12.col-sm-12
           button#load-t2-data.btn.btn-primary Load T2 Data
-      div#t3dataholder.row
+      div.row
+        div#t2dataholder.col-lg-12.col-md-12.col-sm-12
+      div.row
         div.col-lg-12.col-md-12.col-sm-12
           button#load-t3-data.btn.btn-primary Load T3 Data
-      div#t4dataholder.row
+      div.row
+        div#t3dataholder.col-lg-12.col-md-12.col-sm-12
+      div.row
         div.col-lg-12.col-md-12.col-sm-12
           button#load-t4-data.btn.btn-primary Load T4 Data
-      div#oddataholder.row
+      div.row
+        div#t4dataholder.col-lg-12.col-md-12.col-sm-12
+      div.row
         div.col-lg-12.col-md-12.col-sm-12
           button#load-od-data.btn.btn-primary Load Orokin Derelict Data
+      div.row
+        div#oddataholder.col-lg-12.col-md-12.col-sm-12
     
               
     include footer.jade

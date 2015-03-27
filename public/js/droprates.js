@@ -54,6 +54,14 @@ $(document).ready(function() {
           displayData(5, data);      
         }
       });
+    },
+    onGameVersionChange: function() {
+      //Reset everything
+      $('#t1dataholder').empty();
+      $('#t2dataholder').empty();
+      $('#t3dataholder').empty();
+      $('#t4dataholder').empty();
+      $('#oddataholder').empty();
     }
   };
   
@@ -213,7 +221,7 @@ $(document).ready(function() {
   
   function fetchTowerData(tier, callback) {
     $.ajax({
-      url: '/ajax/gettower/'+tier,
+      url: '/ajax/gettower/'+tier+'/'+$('#game-version').val(),
       type: 'POST',
       contentType: 'application/json',
       success: function (data) {
@@ -232,7 +240,7 @@ $(document).ready(function() {
         }
       },
       error: function (xhr, status, error) {
-        callback("ERROR in conncetion", null);
+        callback("ERROR in connection", null);
       },
     });
   }
@@ -247,6 +255,7 @@ $(document).ready(function() {
     return 0;
   }
   
+  $('#game-version').change(callbacks.onGameVersionChange);
   $('#load-t1-data').click(callbacks.onLoadT1Data);
   $('#load-t2-data').click(callbacks.onLoadT2Data);
   $('#load-t3-data').click(callbacks.onLoadT3Data);
