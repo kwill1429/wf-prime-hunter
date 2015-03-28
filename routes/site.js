@@ -3,11 +3,11 @@
 /* global emit */
 "use strict";
 
+var conf = require('../config').Config;
 var Runs = require('../models/runs');
 var Feedback = require('../models/feedback');
 var Keypack = require('../models/keypack');
 var async = require('async');
-var conf = require('../hunter-config').HunterConfig;
 var pjson = require('../package.json');
 var NodeCache = require("node-cache");
 var ncache = new NodeCache({ stdTTL: 600, checkperiod: 60 });

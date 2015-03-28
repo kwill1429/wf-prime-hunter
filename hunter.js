@@ -8,7 +8,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
-var conf = require('./hunter-config').HunterConfig;
+var conf = require('./config').Config;
 var Account = require('./models/account');
 
 var app = express();

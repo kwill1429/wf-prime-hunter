@@ -3,7 +3,6 @@
 "use strict";
 
 var Account = require('../models/account');
-var conf = require('../hunter-config').HunterConfig;
 
 exports.login = function(req, res){
   res.render('login', { user: req.user });
