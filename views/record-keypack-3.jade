@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Record Random Keypack Reward - Prime Hunter
+
+    link(href="/public/css/index-#{version}.min.css", rel="stylesheet")
+
+    if isprod
+      script(src="/public/js/ga.js")
+  body
+    
+    include navbar.jade
+    
+    div.jumbotron
+      div.container
+        div.row
+          div.col-lg-8.col-md-8.col-sm-8
+            h1 Record Void keypack results
+            p What keys did you receive from your random key pack?
+    
+    div#record-keypack-holder.container
+      
+      
+    include footer.jade
+    
+    if isprod
+      script(src="/public/js/record-keypack-#{version}.min.js")  
+    else
+      script(src="/bower_components/jquery/dist/jquery.min.js")
+      script(src="/public/js/jquery.toaster.js")
+      script(src="/public/js/feedback.js")
+      script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+      script(src="/bower_components/react/react-with-addons.js")
+      script(src="/bower_components/react/JSXTransformer.js")
+      script(src="/bower_components/fluxxor/build/fluxxor.js")
+      script(src="/public/react/RecordKeypack3.jsx" type="text/jsx")
