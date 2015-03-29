@@ -25,6 +25,18 @@ module.exports = function(grunt) {
           'public/temp/history-compiled-jsx.js'
         ],
         dest: 'public/temp/history.js',
+      },
+      reckeypackjs: {
+        src: [
+          'bower_components/jquery/dist/jquery.js', 
+          'bower_components/bootstrap/dist/js/bootstrap.js',
+          'public/js/jquery.toaster.js', 
+          'public/js/feedback.js',
+          'bower_components/js/react-with-addons.min.js',
+          'bower_components/fluxxor/build/fluxxor.js',
+          'public/temp/record-keypack-compiled-jsx.js'
+        ],
+        dest: 'public/temp/record-keypack.js',
       }
     },
     cssmin: {
@@ -37,10 +49,13 @@ module.exports = function(grunt) {
       }
     },
     react: {
-      historyjsx: {
+      convertjsx: {
         files: {
           'public/temp/history-compiled-jsx.js': [
             'public/react/History.jsx'
+          ],
+          'public/temp/record-keypack-compiled-jsx.js': [
+            'public/react/RecordKeypack.jsx'
           ]
         }
       }
@@ -48,7 +63,8 @@ module.exports = function(grunt) {
     uglify: {
       historyjs: {
         files: {
-          'public/js/history-<%= pkg.version %>.min.js': ['public/temp/history.js']
+          'public/js/history-<%= pkg.version %>.min.js': ['public/temp/history.js'],
+          'public/js/record-keypack-<%= pkg.version %>.min.js': ['public/temp/record-keypack.js']
         }
       }
     },
