@@ -181,6 +181,14 @@ footer {
   padding: 10px;
 }
 
+.record-keypack-save-form {
+  text-align: center;
+}
+
+.record-keypack-save-form button {
+  margin-right: 15px;
+}
+
 /*Make sure button text is not overflowing*/
 @media (min-width: 768px) and (max-width: 992px) {
   .btn {

@@ -1,5 +1,5 @@
 /* jshint browser: true */
-/* jshint devel: true */
+/* jshint jquery: true */
 /* global React */
 
 var PureRenderMixin = React.addons.PureRenderMixin;
@@ -11,12 +11,111 @@ var StoreWatchMixin = window.Fluxxor.StoreWatchMixin;
 
 var constants = {
   SET_TIER_ON_KEY: "SET_TIER_ON_KEY",
-  SET_MISSION_ON_KEY: "SET_MISSION_ON_KEY"
+  SET_MISSION_ON_KEY: "SET_MISSION_ON_KEY",
+  RESET_KEYPACK: "RESET_KEYPACK",
+  SAVE_KEYPACK: "SAVE_KEYPACK"
 };
 
 var KeypackStore = window.Fluxxor.createStore({
+  
   initialize: function() {
-    this.keypack = [
+    this.keypack = this.resetKeypack();
+    
+    this.canBeSaved = false;
+    this.isLoading = false;
+
+    this.bindActions(
+      constants.SET_TIER_ON_KEY, this.onSetTierOnKey,
+      constants.SET_MISSION_ON_KEY, this.onSetMissionOnKey,
+      constants.RESET_KEYPACK, this.onResetKeypack,
+      constants.SAVE_KEYPACK, this.onSaveKeypack
+    );
+    
+  },
+  
+  onSetTierOnKey: function(payload) {
+    this.keypack[payload.keyNum].tier = payload.newTier;
+    
+    this.checkInvalidStates();
+    this.checkIfCanBeSaved();
+    
+    this.emit("change");
+  },
+  
+  onSetMissionOnKey: function(payload) {
+    this.keypack[payload.keyNum].mission = payload.newMission;
+    
+    this.checkInvalidStates();
+    this.checkIfCanBeSaved();
+    
+    this.emit("change");
+  },
+  
+  onResetKeypack: function() {
+    this.keypack = this.resetKeypack();
+    
+    this.canBeSaved = false;
+    
+    this.emit("change");
+  },
+  
+  onSaveKeypack: function() {
+    //Fire off ajax
+    
+    //Transform data into this stupid format
+    var tosend = {
+      key1: {
+        tier: this.keypack[0].tier,
+        mission: this.keypack[0].mission
+      },
+      key2: {
+        tier: this.keypack[1].tier,
+        mission: this.keypack[1].mission
+      },
+      key3: {
+        tier: this.keypack[2].tier,
+        mission: this.keypack[2].mission
+      }
+    };
+    
+    var that = this;
+    
+    $.ajax({
+      url: '/ajax/savekeypack',
+      data: JSON.stringify(tosend),
+      type: 'POST',
+      contentType: 'application/json',
+      success: function (data) {
+        try {
+          //var response = jQuery.parseJSON(data);
+          //if (response.success) {}
+          that.onFinishedSaving();
+          
+        }
+        catch(exception) {
+          //TODO: add proper error display
+        }
+      },
+      error: function (xhr, status, error) {
+        //TODO: add proper error display
+      },
+    });
+    
+    this.isLoading = true;
+    
+    this.emit("change");
+  },
+  
+  onFinishedSaving: function() {
+    this.keypack = this.resetKeypack();
+    this.canBeSaved = false;
+    this.isLoading = false;
+    
+    this.emit("change");
+  },
+  
+  resetKeypack: function() {
+    return [
       {
         tier: 0,
         mission: ""
@@ -30,28 +129,17 @@ var KeypackStore = window.Fluxxor.createStore({
         mission: ""
       }
     ];
-
-    this.bindActions(
-      constants.SET_TIER_ON_KEY, this.onSetTierOnKey,
-      constants.SET_MISSION_ON_KEY, this.onSetMissionOnKey
-    );
-    
   },
   
-  onSetTierOnKey: function(payload) {
-    this.keypack[payload.keyNum].tier = payload.newTier;
-    
-    this.checkInvalidStates();
-    
-    this.emit("change");
-  },
-  
-  onSetMissionOnKey: function(payload) {
-    this.keypack[payload.keyNum].mission = payload.newMission;
-    
-    this.checkInvalidStates();
-    
-    this.emit("change");
+  checkIfCanBeSaved: function() {
+    if (this.keypack[0].tier !== 0 &&
+        this.keypack[1].tier !== 0 &&
+        this.keypack[2].tier !== 0 &&
+        this.keypack[0].mission !== "" &&
+        this.keypack[1].mission !== "" &&
+        this.keypack[2].mission !== "") {
+      this.canBeSaved = true;
+    }
   },
   
   checkInvalidStates: function() {
@@ -65,7 +153,9 @@ var KeypackStore = window.Fluxxor.createStore({
   
   getState: function() {
     return {
-      keypack: this.keypack
+      keypack: this.keypack,
+      canBeSaved: this.canBeSaved,
+      isLoading: this.isLoading
     };
   }
 });
@@ -77,6 +167,14 @@ var actions = {
   
   setMissionOnKey: function(payload) {
     this.dispatch(constants.SET_MISSION_ON_KEY, payload);
+  },
+  
+  resetKeypack: function() {
+    this.dispatch(constants.RESET_KEYPACK);
+  },
+  
+  saveKeypack: function() {
+    this.dispatch(constants.SAVE_KEYPACK);
   }
 };
 
@@ -250,12 +348,21 @@ var RecordKeypack = React.createClass({
   getStateFromFlux: function() {
     var flux = this.getFlux();
     return  {
-      keypack: flux.store("KeypackStore").getState().keypack
+      keypack: flux.store("KeypackStore").getState().keypack,
+      canBeSaved: flux.store("KeypackStore").getState().canBeSaved,
+      isLoading: flux.store("KeypackStore").getState().isLoading
     };
   },
   
+  handleReset: function() {
+    this.getFlux().actions.resetKeypack();
+  },
+  
+  handleSave: function() {
+    this.getFlux().actions.saveKeypack();
+  },
+  
   render: function() {
-    
     var keyRecorders = [];
     for (var i = 0; i < this.state.keypack.length; i++) {
       keyRecorders.push(
@@ -268,9 +375,19 @@ var RecordKeypack = React.createClass({
       );  
     }
     
+    var spinner = this.state.isLoading ? <i key="spinner" className="fa fa-circle-o-notch fa-spin"></i> : null;
+    
     return (
-      <div className="row">
-        {keyRecorders}
+      <div>
+        <div className="row">
+          {keyRecorders}
+        </div>
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 record-keypack-save-form">
+            <button type="button" className={this.state.canBeSaved ? "btn btn-primary" : "btn btn-primary disabled"} onClick={this.handleSave}>Save Void Keypack {spinner}</button>
+            <button type="button" className="btn btn-default" onClick={this.handleReset}>RESET</button>
+          </div>
+        </div>
       </div>
     );
   }
