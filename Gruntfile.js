@@ -28,11 +28,9 @@ module.exports = function(grunt) {
       },
       reckeypackjs: {
         src: [
-          'bower_components/jquery/dist/jquery.js', 
-          'bower_components/bootstrap/dist/js/bootstrap.js',
-          'public/js/jquery.toaster.js', 
-          'public/js/feedback.js',
-          'bower_components/js/react-with-addons.min.js',
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/bootstrap/js/dropdown.js',
+          'bower_components/react/react-with-addons.min.js',
           'bower_components/fluxxor/build/fluxxor.js',
           'public/temp/record-keypack-compiled-jsx.js'
         ],

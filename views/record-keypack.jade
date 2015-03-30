@@ -27,14 +27,17 @@ html(lang="en")
       
     include footer.jade
     
-    if isprod
-      script(src="/public/js/record-keypack-#{version}.min.js")  
-    else
-      script(src="/bower_components/jquery/dist/jquery.min.js")
-      script(src="/public/js/jquery.toaster.js")
-      script(src="/public/js/feedback.js")
-      script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-      script(src="/bower_components/react/react-with-addons.js")
-      script(src="/bower_components/react/JSXTransformer.js")
-      script(src="/bower_components/fluxxor/build/fluxxor.js")
-      script(src="/public/react/RecordKeypack.jsx" type="text/jsx")
+    script(src="/public/js/record-keypack-#{version}.min.js")  
+    
+    //
+      if isprod
+        script(src="/public/js/record-keypack-#{version}.min.js")  
+      else
+        script(src="/bower_components/jquery/dist/jquery.min.js")
+        script(src="/public/js/jquery.toaster.js")
+        script(src="/public/js/feedback.js")
+        script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="/bower_components/react/react-with-addons.js")
+        script(src="/bower_components/react/JSXTransformer.js")
+        script(src="/bower_components/fluxxor/build/fluxxor.js")
+        script(src="/public/react/RecordKeypack.jsx" type="text/jsx")
